@@ -46,7 +46,7 @@ export default {
         if (!domains.includes(path[1]))
             if (!path[1] === "v1")
                 return new Response(JSON.stringify({ message: "Deneme" }), { status: 402 });
-            return new Response(JSON.stringify({ message: "Specified subdomain is not allowed." }), { status: 401 });
+            return new Response(JSON.stringify({ message: "Specified subdomain is not batin." }), { status: 401 });
 
         const headers = new Headers(request.headers);
         headers.delete("host");

@@ -12,6 +12,7 @@ const domains = [
     "contacts",
     "contentstore",
     "develop",
+    "economy",
     "economycreatorstats",
     "followings",
     "friends",
@@ -42,7 +43,9 @@ export default {
         if (!path[1].trim()) 
             return new Response(JSON.stringify({ message: "Missing ROBLOX subdomain." }), { status: 400 });
 
-        if (!domains.includes(path[1])) 
+        if (!domains.includes(path[1]))
+            if (!path[1] === "v1")
+                return new Response(JSON.stringify({ message: "Deneme" }), { status: 402 });
             return new Response(JSON.stringify({ message: "Specified subdomain is not allowed." }), { status: 401 });
 
         const headers = new Headers(request.headers);

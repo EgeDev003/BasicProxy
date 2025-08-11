@@ -12,7 +12,6 @@ const domains = [
     "contacts",
     "contentstore",
     "develop",
-    "economy",
     "economycreatorstats",
     "followings",
     "friends",

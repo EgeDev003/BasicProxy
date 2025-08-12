@@ -38,11 +38,13 @@ const PeakKey = "X9G7B4QW8L0FJ2RMK5YP3ZSA1HVT6CND"
 
 // Export our request handler
 export default {
-    async fetch(request) {
+    async fetch(request, env) {
         const url = new URL(request.url);
         const path = url.pathname.split(/\//);
-        let sa = false        
+        let sa = false
 
+        console.log(env)
+        
         if (!path[1].trim()) 
             return new Response(JSON.stringify({ message: "Missing ROBLOX subdomain." }), { status: 400 });
         

@@ -39,13 +39,18 @@ export default {
     async fetch(request) {
         const url = new URL(request.url);
         const path = url.pathname.split(/\//);
+        const sa = false        
 
         if (!path[1].trim()) 
             return new Response(JSON.stringify({ message: "Missing ROBLOX subdomain." }), { status: 400 });
-
+        
         if (!domains.includes(path[1]))
             if (path[1] === "v1") {
-                return new Response(JSON.stringify({ message: "NEDEN pathv2:" + path[2]}), { status: 401 });
+                if (!path[2] === "games") {
+                    return new Response(JSON.stringify({ message: "NEDEN pathv2:" + path[2]}), { status: 401 });
+                } else {
+                    sa = true
+                }
             } else {
                 return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
             }
@@ -65,7 +70,10 @@ export default {
         if (request.method !== "GET" && request.method !== "HEAD") {
             init.body = await request.text();
         }
-
-        return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);
+        if (sa) {
+            return fetch(`https://games.roblox.com/v1/games/8413355123/game-passes?limit=100&sortOrder=1`)
+        } else {
+            return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);
+        }
     }
 };

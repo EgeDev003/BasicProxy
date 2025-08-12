@@ -1,39 +1,3 @@
-// Copyright (c) 2024 iiPython
-
-// List of domains
-// Would of preferred to use JSON, but CF doesn't allow `require("fs")`
-const domains = [
-    "apis",
-    "assetdelivery",
-    "avatar",
-    "badges",
-    "catalog",
-    "chat",
-    "contacts",
-    "contentstore",
-    "develop",
-    "economy",
-    "economycreatorstats",
-    "followings",
-    "friends",
-    "games",
-    "groups",
-    "groupsmoderation",
-    "inventory",
-    "itemconfiguration",
-    "locale",
-    "notifications",
-    "points",
-    "presence",
-    "privatemessages",
-    "publish",
-    "search",
-    "thumbnails",
-    "trades",
-    "translations",
-    "users"
-]
-
 const PeakKey = "X9G7B4QW8L0FJ2RMK5YP3ZSA1HVT6CND"
 
 // Export our request handler
@@ -41,24 +5,10 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const path = url.pathname.split(/\//);
-        let sa = false
 
-        console.log(env)
-        console.log(url.search)
-        
-        if (!path[1].trim()) 
-            return new Response(JSON.stringify({ message: "Missing ROBLOX subdomain." }), { status: 400 });
-        
-        if (!domains.includes(path[1]))
-            if (path[1] === "v1") {
-                if (!path[2] === "games") {
-                    return new Response(JSON.stringify({ message: "NEDEN pathv2:" + path[2]}), { status: 401 });
-                } else {
-                    sa = true
-                }
-            } else {
-                return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
-            }
+        if (path[1] === "gamepass") {
+            return new Response(JSON.stringify({ message: "yes"}), { status: 400 })
+        }
         
         const headers = new Headers(request.headers);
         headers.delete("host");
@@ -78,11 +28,6 @@ export default {
 
         if (request.method !== "GET" && request.method !== "HEAD") {
             init.body = await request.text();
-        }
-        if (sa) {
-            return fetch(`https://games.roblox.com/v1/games/8413355123/game-passes?limit=100&sortOrder=1`)
-        } else {
-            return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);
         }
     }
 };

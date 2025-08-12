@@ -64,7 +64,7 @@ export default {
         headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
         console.log(headers.get("key"))
-        if (!headers.get("key") == PeakKey) {
+        if (headers.get("key") !== PeakKey) {
             return new Response(JSON.stringify({ message: "Key is not true"}), { status: 400 });
         }
         

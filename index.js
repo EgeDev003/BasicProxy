@@ -39,7 +39,7 @@ export default {
     async fetch(request) {
         const url = new URL(request.url);
         const path = url.pathname.split(/\//);
-        const sa = false        
+        let sa = false        
 
         if (!path[1].trim()) 
             return new Response(JSON.stringify({ message: "Missing ROBLOX subdomain." }), { status: 400 });

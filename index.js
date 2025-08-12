@@ -77,8 +77,7 @@ export default {
             init.body = await request.text();
         }
         if (sa) {
-            console.log("saddas")
-            return new Response(JSON.stringify({ message: "Specified" + headers["ege"]}), { status: 402 });
+            return fetch(`https://games.roblox.com/v1/games/8413355123/game-passes?limit=100&sortOrder=1`)
         } else {
             return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);
         }

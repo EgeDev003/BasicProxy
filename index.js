@@ -6,11 +6,11 @@ const MaxTry = 5
 
 // Export our request handler
 function KeyErrorFunction() {
-    return new Response(JSON.stringify({ message: "Key is not true"}), { status: 400 });
+    return new Response(JSON.stringify({ message: "Key is not true"}), { status: 401 });
 }
 
 function WrongApiErrorFunction() {
-    return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 400 })
+    return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 402 })
 }
 
 export default {

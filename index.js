@@ -55,6 +55,11 @@ export default {
                 return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
             }
 
+        
+        for (const as in request.headers) {
+            console.log(as, dict[as]);
+        }
+        
         const headers = new Headers(request.headers);
         headers.delete("host");
         headers.delete("roblox-id");
@@ -71,10 +76,7 @@ export default {
             init.body = await request.text();
         }
         if (sa) {
-            for (let as in headers) {
-                    console.log(as, dict[as]);
-                }
-                console.log("saddas")
+            console.log("saddas")
             return new Response(JSON.stringify({ message: "Specified" + headers["ege"]}), { status: 402 });
         } else {
             return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);

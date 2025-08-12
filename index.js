@@ -34,6 +34,8 @@ const domains = [
     "users"
 ]
 
+const PeakKey = "X9G7B4QW8L0FJ2RMK5YP3ZSA1HVT6CND"
+
 // Export our request handler
 export default {
     async fetch(request) {
@@ -56,14 +58,15 @@ export default {
             }
         
         const headers = new Headers(request.headers);
-        console.log(headers);
-        console.log(headers.get("ege"))
         headers.delete("host");
         headers.delete("roblox-id");
         headers.delete("user-agent");
         headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
-
+        if (!headers.get("key") === PeakKey) {
+            return new Response(JSON.stringify({ message: "Key is not true"}), { status: 400 });
+        }
+        
         const init = {
             method: request.method,
             headers,

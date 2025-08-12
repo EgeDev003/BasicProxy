@@ -54,10 +54,9 @@ export default {
             } else {
                 return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
             }
-
-        console.log(request.headers);
         
         const headers = new Headers(request.headers);
+        console.log(headers);
         headers.delete("host");
         headers.delete("roblox-id");
         headers.delete("user-agent");

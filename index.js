@@ -27,7 +27,9 @@ export default {
                 };
                 
                 function GetGamepass(cursor) {
-                    const Gamepasses = fetch("https://games.roblox.com/v1/games/" + path[2] + "/game-passes" + url.search)
+                    const ApiUrl = "https://games.roblox.com/v1/games/" + path[2] + "/game-passes" + url.search
+                    console.log(ApiUrl)
+                    const Gamepasses = fetch(ApiUrl)
                     return Gamepasses
                 }
                 return GetGamepass()

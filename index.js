@@ -45,9 +45,7 @@ export default {
 
         if (!domains.includes(path[1]))
             if (path[1] === "v1") {
-                if (!path[2] == "games") {
-                    return new Response(JSON.stringify({ message: "Deneme pathv2" + path[2]}), { status: 415 });
-                }
+                return new Response(JSON.stringify({ message: "NEDEN pathv2:" + path[2]}), { status: 401 });
             } else {
                 return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
             }

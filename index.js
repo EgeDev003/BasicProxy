@@ -45,7 +45,7 @@ export default {
 
         if (!domains.includes(path[1]))
             if (path[1] === "v1")
-                return new Response(JSON.stringify({ message: "Deneme" }), { status: 414 });
+                return new Response(JSON.stringify({ message: "Deneme pathv2" + path[2]}), { status: 414 });
             return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
 
         const headers = new Headers(request.headers);

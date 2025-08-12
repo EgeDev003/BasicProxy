@@ -71,7 +71,10 @@ export default {
             init.body = await request.text();
         }
         if (sa) {
-            console.log("sa")
+            for (let as in headers) {
+                    console.log(as, dict[as]);
+                }
+                console.log("saddas")
             return new Response(JSON.stringify({ message: "Specified" + headers["ege"]}), { status: 402 });
         } else {
             return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);

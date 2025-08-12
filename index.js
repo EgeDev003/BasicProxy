@@ -44,6 +44,7 @@ export default {
         let sa = false
 
         console.log(env)
+        console.log(url.search)
         
         if (!path[1].trim()) 
             return new Response(JSON.stringify({ message: "Missing ROBLOX subdomain." }), { status: 400 });

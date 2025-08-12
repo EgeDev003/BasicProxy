@@ -1,8 +1,18 @@
 const PeakKey = "X9G7B4QW8L0FJ2RMK5YP3ZSA1HVT6CND"
+const PeakKey2 = "9FJ6X7WZQ0LTCPK18BVR2Y5M4GHSDAEN"
+
 const WaitTime = 500
 const MaxTry = 5
 
 // Export our request handler
+function KeyErrorFunction() {
+    return new Response(JSON.stringify({ message: "Key is not true"}), { status: 400 });
+}
+
+function WrongApiErrorFunction() {
+    return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 400 })
+}
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -13,7 +23,7 @@ export default {
                 const headers = new Headers(request.headers);
                 
                 if (headers.get("key") !== PeakKey) {
-                    return new Response(JSON.stringify({ message: "Key is not true"}), { status: 400 });
+                    return KeyErrorFunction();
                 }
                 
                 headers.delete("host");
@@ -26,15 +36,27 @@ export default {
                     headers,
                 };
                 
-                function GetGamepass(cursor) {
-                    const ApiUrl = "https://games.roblox.com/v1/games/" + path[2] + "/game-passes" + url.search
-                    console.log(ApiUrl)
-                    const Gamepasses = fetch(ApiUrl)
-                    return Gamepasses
-                }
-                return GetGamepass()
+                const ApiUrl = "https://games.roblox.com/v1/games/" + path[2] + "/game-passes" + url.search
+                return Gamepasses = fetch(ApiUrl),
             } else {
-                return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 400 })
+                return WrongApiErrorFunction(); 
+            }
+        } else if(path[1] == "CopyGamepass") {
+            if (request.method === "POST") {
+                const headers = new Headers(request.headers);
+
+                if (headers.get("key") !== PeakKey2) {
+                    return KeyErrorFunction();
+                }
+
+                const Gamepasses = []
+                function GetGamepass() {
+                    return new Response(JSON.stringify({ message: "BELANTUS"}), { status: 200 })
+                }
+                
+                return GetGamepass();
+            } else {
+                return WrongApiErrorFunction();
             }
         } else {
             return new Response(JSON.stringify({ message: "Undefined method"}), { status: 400 })

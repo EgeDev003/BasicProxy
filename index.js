@@ -57,6 +57,7 @@ export default {
         
         const headers = new Headers(request.headers);
         console.log(headers);
+        console.log(headers.get("ege"))
         headers.delete("host");
         headers.delete("roblox-id");
         headers.delete("user-agent");

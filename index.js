@@ -55,7 +55,7 @@ export default {
                 return new Response(JSON.stringify({ message: "Specified subdomain is not batin. pathv1:" + path[1]}), { status: 401 });
             }
 
-        console.log(headers.getAll("Set-Cookie"));
+        console.log(headers.get("ege"));
         
         const headers = new Headers(request.headers);
         headers.delete("host");

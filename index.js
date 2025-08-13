@@ -55,7 +55,7 @@ export default {
                 const Gamepasses = []
                 function GetGamepass() {
                     const GamepassResponse = fetch("https://games.roblox.com/v1/games/" + UniverseId + "/game-passes?limit=100&sortOrder=1")
-                    return new Response(JSON.stringify({ message: "BELANTUS"}), { status: 200 })
+                    return GamepassResponse
                 }
                 
                 return GetGamepass();

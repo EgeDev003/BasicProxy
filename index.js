@@ -70,10 +70,9 @@ export default {
                     const GamepassResponseData = JSON.parse(rawGamepassResponseData);
 
                     Gamepasses.concat(GamepassResponseData.data)
-                    return GamepassResponse
                 }
                 
-                GetGamepass()
+                await GetGamepass()
 
                 return Gamepasses
             } else {

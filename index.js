@@ -48,9 +48,13 @@ export default {
                 if (headers.get("key") !== PeakKey2) {
                     return KeyErrorFunction();
                 }
-
+                
+                const data = await request.json()
+                console.log(data)
+                
                 const Gamepasses = []
                 function GetGamepass() {
+                    const Response = fetch("https://games.roblox.com/v1/games/")
                     return new Response(JSON.stringify({ message: "BELANTUS"}), { status: 200 })
                 }
                 

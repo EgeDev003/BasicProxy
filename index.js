@@ -49,7 +49,7 @@ export default {
                     return KeyErrorFunction();
                 }
                 
-                const data = await request.json()
+                let data = await request.json()
                 console.log(JSON.stringify(data))
                 
                 const Gamepasses = []

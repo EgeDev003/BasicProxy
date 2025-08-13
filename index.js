@@ -63,7 +63,7 @@ export default {
                     
                     const rawGamepassResponseData = GamepassResponse.text()
 
-                    if (!GamepassResponseData.trim()) {
+                    if (!rawGamepassResponseData.trim()) {
                         return new Response(JSON.stringify({ message: "Body is nil"}), { status: 404 })
                     }
                     

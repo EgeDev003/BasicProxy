@@ -61,9 +61,9 @@ export default {
                         return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 })
                     }
                     
-                    const GameResponseData = GameResponseData.json()
+                    const GamepassResponseData = GamepassResponse.json()
 
-                    Gamepasses.concat(GameResponseData.data)
+                    Gamepasses.concat(GamepassResponseData.data)
                     return GamepassResponse
                 }
                 

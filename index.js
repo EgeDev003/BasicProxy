@@ -59,7 +59,7 @@ export default {
                 return WrongApiErrorFunction();
             }
         } else if(path[1] === "favicon.ico") {
-            return fetch("chrome://favicon2/?size=24&scaleFactor=1x&showFallbackMonogram=&pageUrl=https%3A%2F%2Fwww.youtube.com%2F%40sleitnick1")
+            return fetch("https://www.youtube.com/favicon.ico")
         } else {
             return new Response(JSON.stringify({ message: "Undefined method"}), { status: 400 })
         }

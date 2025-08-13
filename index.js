@@ -50,7 +50,8 @@ export default {
                 }
                 
                 let data = await request.json()
-                const UniverseId = data.UniverseId
+                const UniverseId1 = data.UniverseId1
+                const UniverseId2 = data.UniverseId2
                 
                 const Gamepasses = []
                 function GetGamepass() {

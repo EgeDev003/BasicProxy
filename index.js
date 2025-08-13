@@ -49,7 +49,7 @@ export default {
                     return KeyErrorFunction();
                 }
                 
-                let data = await request.json()
+                const data = await request.text()
                 const UniverseId1 = data.UniverseId1
                 const UniverseId2 = data.UniverseId2
                 
@@ -61,7 +61,13 @@ export default {
                         return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 })
                     }
                     
-                    const GamepassResponseData = GamepassResponse.json()
+                    const rawGamepassResponseData = GamepassResponse.text()
+
+                    if (!GamepassResponseData.trim()) {
+                        return new Response(JSON.stringify({ message: "Body is nil"}), { status: 404 })
+                    }
+                    
+                    const GamepassResponseData = JSON.parse(rawGamepassResponseData);
 
                     Gamepasses.concat(GamepassResponseData.data)
                     return GamepassResponse

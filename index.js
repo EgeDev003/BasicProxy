@@ -56,10 +56,20 @@ export default {
                 const Gamepasses = []
                 function GetGamepass() {
                     const GamepassResponse = fetch("https://games.roblox.com/v1/games/" + UniverseId + "/game-passes?limit=100&sortOrder=1")
+                    
+                    if (!GamepassResponse.ok) {
+                        return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 })
+                    }
+                    
+                    const GameResponseData = GameResponseData.json()
+
+                    Gamepasses.concat(GameResponseData.data)
                     return GamepassResponse
                 }
                 
-                return GetGamepass();
+                GetGamepass()
+
+                return Gamepasses
             } else {
                 return WrongApiErrorFunction();
             }

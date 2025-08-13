@@ -55,7 +55,7 @@ export default {
                 
                 const Gamepasses = []
                 async function GetGamepass() {
-                    const GamepassResponse = await fetch("https://games.roblox.com/v1/games/" + UniverseId + "/game-passes?limit=100&sortOrder=1")
+                    const GamepassResponse = await fetch("https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1")
                     
                     if (!GamepassResponse.ok) {
                         return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 })

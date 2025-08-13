@@ -76,7 +76,10 @@ export default {
                     Gamepasses.concat(GamepassResponseData.data)
                 }
                 
-                await GetGamepass()
+                const GPResponse await GetGamepass()
+                if (!GPResponse.ok) {
+                    return GPResponse
+                }                
 
                 return Gamepasses
             } else {

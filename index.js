@@ -51,11 +51,10 @@ export default {
                 
                 let data = await request.json()
                 const UniverseId = data.UniverseId
-                console.log(UniverseId)
                 
                 const Gamepasses = []
                 function GetGamepass() {
-                    const GamepassResponse = fetch("https://games.roblox.com/v1/games/8413355123/game-passes?limit=100&sortOrder=1")
+                    const GamepassResponse = fetch("https://games.roblox.com/v1/games/" + UniverseId + "/game-passes?limit=100&sortOrder=1")
                     return new Response(JSON.stringify({ message: "BELANTUS"}), { status: 200 })
                 }
                 

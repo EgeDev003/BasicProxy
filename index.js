@@ -50,7 +50,7 @@ export default {
                 }
                 
                 const data = await request.json()
-                console.log(data)
+                console.log(JSON.stringify(data))
                 
                 const Gamepasses = []
                 function GetGamepass() {

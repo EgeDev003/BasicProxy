@@ -78,7 +78,8 @@ export default {
 
                     const Deneme = {
                         Data1: Gamepasses,
-                        Data2: GamepassResponseData["data"]
+                        Data2: GamepassResponseData["data"],
+                        Data3: Array.isArray(GamepassResponseData["data"])
                     }
 
                     return new Response(JSON.stringify(Deneme), { status: 200 });

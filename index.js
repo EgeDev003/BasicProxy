@@ -51,7 +51,7 @@ export default {
                 
                 const rawData = await request.text()
 
-                if (!Data.trim()) {
+                if (!rawData.trim()) {
                     return new Response(JSON.stringify({ message: "Body is nil"}), { status: 404 });
                 }
                 

@@ -92,6 +92,7 @@ export default {
                         if (!ImageData.ok){
                             return new Response(JSON.stringify({ message: "Image can not getting"}), { status: 405 });
                         }
+                        console.log(ImageData.imageUrl)
                         return ImageData
                     })
 

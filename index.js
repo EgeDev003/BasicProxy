@@ -96,7 +96,8 @@ export default {
                             return new Response(JSON.stringify({ message: "Image url can not getting"}), { status: 405 });
                         }
                         
-                        const ImageUrlData = await ImageUrlResponse.json()                      
+                        const ImageUrlData = await ImageUrlResponse.json()
+                        console.log(JSON.stringify(ImageUrlData))
 
                         const ImageUrl = await ImageUrlData["data"][0]["imageUrl"]
 

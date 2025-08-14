@@ -41,7 +41,7 @@ export default {
                 };
                 
                 const ApiUrl = "https://games.roblox.com/v1/games/" + path[2] + "/game-passes" + url.search
-                return Gamepasses = fetch(ApiUrl)
+                return fetch(ApiUrl)
             } else {
                 return WrongApiErrorFunction(); 
             }

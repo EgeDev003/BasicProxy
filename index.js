@@ -73,8 +73,8 @@ export default {
 
                     const GamepassResponseData = await GamepassResponse.json()
                     const NextToken = true
-
-                    Gamepasses.concat(GamepassResponseData)
+                    
+                    Gamepasses.concat(GamepassResponseData["data"])
 
                     return new Response(GamepassResponseData, { status: 200 });
                 }

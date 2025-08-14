@@ -76,14 +76,7 @@ export default {
                     
                     Gamepasses.push(...GamepassResponseData["data"])
 
-                    const Deneme = {
-                        Data1: Gamepasses,
-                        Data2: GamepassResponseData["data"],
-                        Data3: Array.isArray(GamepassResponseData["data"]),
-                        Data4: Array.isArray(Gamepasses)
-                    }
-
-                    return new Response(JSON.stringify(Deneme), { status: 200 });
+                    return new Response(JSON.stringify(Gamepasses), { status: 200 });
                 }
                 
                 const GPResponse = await GetGamepass();

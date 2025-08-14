@@ -88,12 +88,16 @@ export default {
                     const NextPageCursor = GamepassResponseData["nextPageCursor"]
                     
                     for (const GamepassData of GamepassResponseData["data"]) {
-                        const ImageData = await fetch("https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["productId"] + "&size=150x150&format=Png&isCircular=false")
-                        if (!ImageData.ok){
+                        const ImageUrlResponse = await fetch("https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["productId"] + "&size=150x150&format=Png&isCircular=false")
+
+                        if (!ImageUrlResponse.ok){
                             console.log("Failed")
                             return new Response(JSON.stringify({ message: "Image can not getting"}), { status: 405 });
                         }
-                        console.log(ImageData["data"]["imageUrl"])
+                        
+                        const ImageUrl = await ImageUrlResponse.json()["data"]["imageUrl"]
+
+                        console.log(ImageUrl)
                         return ImageData
                     }
 

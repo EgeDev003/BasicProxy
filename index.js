@@ -49,9 +49,16 @@ export default {
                     return KeyErrorFunction();
                 }
                 
-                const data = await request.text()
-                const UniverseId1 = data.UniverseId1
-                const UniverseId2 = data.UniverseId2
+                const rawData = await request.text()
+
+                if (!Data.trim()) {
+                    return new Response(JSON.stringify({ message: "Body is nil"}), { status: 404 });
+                }
+                
+                const Data = JSON.parse(rawData); 
+
+                const UniverseId1 = Data.UniverseId1
+                const UniverseId2 = Data.UniverseId2
                 
                 const Gamepasses = []
                 async function GetGamepass() {
@@ -65,16 +72,6 @@ export default {
                     if (!GamepassResponse.ok) {
                         return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 });
                     }
-                    
-                    const rawGamepassResponseData = GamepassResponse.text()
-
-                    console.log(rawGamepassResponseData)
-                    
-                    if (!rawGamepassResponseData.trim()) {
-                        return new Response(JSON.stringify({ message: "Body is nil"}), { status: 407 });
-                    }
-                    
-                    const GamepassResponseData = JSON.parse(rawGamepassResponseData);
 
                     Gamepasses.concat(GamepassResponseData.data)
                 }

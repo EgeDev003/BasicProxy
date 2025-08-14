@@ -76,7 +76,7 @@ export default {
 
                     Gamepasses.concat(GamepassResponseData)
 
-                    return new Response(JSON.stringify({ message: "Success"}), { status: 200 });
+                    return new Response(JSON.stringify(Gamepasses), { status: 200 });
                 }
                 
                 const GPResponse = await GetGamepass();

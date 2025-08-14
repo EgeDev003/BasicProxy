@@ -13,6 +13,10 @@ function WrongApiErrorFunction() {
     return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 402 });
 }
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
@@ -74,12 +78,11 @@ export default {
                             return GamepassResponse
                         } else {
                             Try ++
-                            setTimeout(async () => {
-                                await GetGamepass(Cursor)
-                            }, WaitTime);
+                            delay(WaitTime)
+                            await GetGamepass(Cursor)
                         }
                     }
-
+                    
                     const GamepassResponseData = await GamepassResponse.json()
                     const NextPageCursor = GamepassResponseData["nextPageCursor"]
                     

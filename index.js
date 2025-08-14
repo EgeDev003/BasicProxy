@@ -74,7 +74,7 @@ export default {
                     const GamepassResponseData = await GamepassResponse.json()
                     const NextToken = true
                     
-                    Gamepasses.concat(GamepassResponseData["data"])
+                    Gamepasses.push(...GamepassResponseData["data"])
 
                     const Deneme = {
                         Data1: Gamepasses,

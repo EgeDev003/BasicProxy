@@ -84,7 +84,7 @@ export default {
                     return GPResponse
                 }                
 
-                return Gamepasses
+                return GPResponse
             } else {
                 return WrongApiErrorFunction();
             }

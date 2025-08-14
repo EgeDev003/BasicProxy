@@ -101,9 +101,9 @@ export default {
 
                         console.log(sa)                        
 
-                        //const ImageUrl = await sa["data"][0]["imageUrl"]
+                        const ImageUrl = await sa["data"][0]["imageUrl"]
 
-                        //console.log(ImageUrl)
+                        console.log(ImageUrl)
                         return ImageData
                     }
 

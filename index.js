@@ -68,7 +68,8 @@ export default {
 
                 const Gamepasses = []
                 async function GetGamepass(Cursor) {
-                    const ApiUrl = "https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1&cursor=" + (cursor || "");
+                    Cursor = (Cursor || "")
+                    const ApiUrl = "https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1&cursor=" + (Cursor || "");
                     console.log(ApiUrl)
 
                     const GamepassResponse = await fetch(ApiUrl);

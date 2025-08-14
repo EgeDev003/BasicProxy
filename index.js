@@ -59,16 +59,25 @@ export default {
 
                 const UniverseId1 = Data.UniverseId1
                 const UniverseId2 = Data.UniverseId2
-                
+
+                const Try = 0                
+
                 const Gamepasses = []
-                async function GetGamepass() {
-                    const ApiUrl = "https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1"
+                async function GetGamepass(Cursor) {
+                    const ApiUrl = "https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1&cursor=" + (cursor || "");
                     console.log(ApiUrl)
 
                     const GamepassResponse = await fetch(ApiUrl);
 
                     if (!GamepassResponse.ok) {
-                        return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 });
+                        if (Try >= MaxTry) {
+                            return GamepassResponse
+                        } else {
+                            Try ++
+                            setTimeout(() => {
+                                GetGamepass(Cursor)
+                            }, WaitTime);
+                        }
                     }
 
                     const GamepassResponseData = await GamepassResponse.json()

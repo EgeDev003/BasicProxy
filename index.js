@@ -111,7 +111,7 @@ export default {
                         const ImageDataContent =  await ImageDataResponse.arrayBuffer()
                         console.log(ImageDataContent)
                         
-                        const ImageBlob = new Blob([arrayBuffer], { type: "image/png" });
+                        const ImageBlob = new Blob([ImageDataContent], { type: "image/png" });
 
                         return new Response(ImageDataContent, {status: 200})
                     }

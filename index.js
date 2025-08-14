@@ -87,7 +87,7 @@ export default {
                     const GamepassResponseData = await GamepassResponse.json()
                     const NextPageCursor = GamepassResponseData["nextPageCursor"]
                     
-                    for (const GamepassData of Array) {
+                    for (const GamepassData of GamepassResponseData["data"]) {
                         const ImageData = await fetch("https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["productId"] + "&size=150x150&format=Png&isCircular=false")
                         if (!ImageData.ok){
                             console.log("Failed")

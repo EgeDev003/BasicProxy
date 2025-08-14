@@ -93,7 +93,7 @@ export default {
                             console.log("Failed")
                             return new Response(JSON.stringify({ message: "Image can not getting"}), { status: 405 });
                         }
-                        console.log(ImageData.imageUrl)
+                        console.log(ImageData["data"]["imageUrl"])
                         return ImageData
                     }
 

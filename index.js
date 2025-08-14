@@ -66,8 +66,6 @@ export default {
                     console.log(ApiUrl)
 
                     const GamepassResponse = await fetch(ApiUrl);
-                    
-                    console.log(GamepassResponse.ok)
 
                     if (!GamepassResponse.ok) {
                         return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 });

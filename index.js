@@ -97,14 +97,11 @@ export default {
                             return new Response(JSON.stringify({ message: "Image can not getting"}), { status: 405 });
                         }
                         
-                        const sa = await ImageUrlResponse.json()
+                        const ImageUrlData = await ImageUrlResponse.json()                      
 
-                        console.log(sa)                        
-
-                        const ImageUrl = await sa["data"][0]["imageUrl"]
+                        const ImageUrl = await ImageUrlData["data"][0]["imageUrl"]
 
                         console.log(ImageUrl)
-                        return ImageData
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });

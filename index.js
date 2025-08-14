@@ -108,7 +108,7 @@ export default {
                             return new Response(JSON.stringify({ message: "Image data can not getting"}), { status: 405 });
                         }
 
-                        const ImageDataContent =  ImageDataResponse.arrayBuffer()
+                        const ImageDataContent =  await ImageDataResponse.arrayBuffer()
                         console.log(ImageDataContent)
                     }
 

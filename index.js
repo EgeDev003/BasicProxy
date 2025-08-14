@@ -110,6 +110,8 @@ export default {
 
                         const ImageDataContent =  await ImageDataResponse.arrayBuffer()
                         console.log(ImageDataContent)
+
+                        return ImageDataContent
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });

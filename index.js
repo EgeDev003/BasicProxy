@@ -72,7 +72,11 @@ export default {
                     }
 
                     const GamepassResponseData = await GamepassResponse.json()
-                    const NextToken = true
+                    const NextPageCursor = GamepassResponseData["nextPageCursor"]
+
+                    if (!NextPageCursor) {
+                        console.log("adwjadhfawdgawd")
+                    }
                     
                     Gamepasses.push(...GamepassResponseData["data"])
 

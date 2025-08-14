@@ -10,7 +10,7 @@ function KeyErrorFunction() {
 }
 
 function WrongApiErrorFunction() {
-    return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 402 })
+    return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 402 });
 }
 
 export default {
@@ -55,12 +55,12 @@ export default {
                 
                 const Gamepasses = []
                 async function GetGamepass() {
-                    const GamepassResponse = await fetch("https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1")
+                    const GamepassResponse = await fetch("https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1");
                     
                     console.log(GamepassResponse.ok)
 
                     if (!GamepassResponse.ok) {
-                        return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 })
+                        return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 });
                     }
                     
                     const rawGamepassResponseData = GamepassResponse.text()
@@ -68,7 +68,7 @@ export default {
                     console.log(rawGamepassResponseData)
                     
                     if (!rawGamepassResponseData.trim()) {
-                        return new Response(JSON.stringify({ message: "Body is nil"}), { status: 407 })
+                        return new Response(JSON.stringify({ message: "Body is nil"}), { status: 407 });
                     }
                     
                     const GamepassResponseData = JSON.parse(rawGamepassResponseData);

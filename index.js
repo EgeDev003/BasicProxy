@@ -100,7 +100,7 @@ export default {
 
                         const ImageUrl = await ImageUrlData["data"][0]["imageUrl"]
 
-                        const ImageDataResponse = fetch(ImageUrl)
+                        const ImageDataResponse = await fetch(ImageUrl)
 
                         if (!ImageDataResponse) {
                             return new Response(JSON.stringify({ message: "Image data can not getting"}), { status: 405 });

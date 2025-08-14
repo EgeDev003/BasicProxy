@@ -73,7 +73,7 @@ export default {
                         return new Response(JSON.stringify({ message: "Something went wrong"}), { status: 403 });
                     }
 
-                    const GamepassResponseData = await request.json()
+                    const GamepassResponseData = await GamepassResponse.json()
                     const NextToken = true
 
                     Gamepasses.concat(GamepassResponseData)

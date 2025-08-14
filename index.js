@@ -89,7 +89,7 @@ export default {
                     const NextPageCursor = GamepassResponseData["nextPageCursor"]
                     
                     for (const GamepassData of GamepassResponseData["data"]) {
-                        const ImageUrlUrl = "https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["productId"] + "&size=150x150&format=Png&isCircular=false"
+                        const ImageUrlUrl = "https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["id"] + "&size=150x150&format=Png&isCircular=false"
                         console.log(ImageUrlUrl)
                         const ImageUrlResponse = await fetch(ImageUrlUrl, {method: "GET"})
 

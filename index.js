@@ -75,27 +75,25 @@ export default {
                         } else {
                             Try ++
                             setTimeout(() => {
-                                GetGamepass(Cursor)
+                                await GetGamepass(Cursor)
                             }, WaitTime);
                         }
                     }
 
                     const GamepassResponseData = await GamepassResponse.json()
                     const NextPageCursor = GamepassResponseData["nextPageCursor"]
-
-                    if (!NextPageCursor) {
-                        console.log("adwjadhfawdgawd")
-                    }
                     
-                    Gamepasses.push(...GamepassResponseData["data"])
+                    GamepassResponseData["data"].forEach(function(GamepassData) {
+                        const ImageData = await fetch("https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["productId"] + "&size=150x150&format=Png&isCircular=false")
+                        return ImageData
+                    })
+
+                    Gamepasses.push(...)
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });
                 }
                 
-                const GPResponse = await GetGamepass();
-                if (!GPResponse.ok) {
-                    return GPResponse
-                }                
+                const GPResponse = await GetGamepass();              
 
                 return GPResponse
             } else {

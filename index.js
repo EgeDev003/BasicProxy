@@ -60,7 +60,7 @@ export default {
                 const UniverseId1 = Data.UniverseId1
                 const UniverseId2 = Data.UniverseId2
 
-                const Try = 0                
+                let Try = 0                
 
                 const Gamepasses = []
                 async function GetGamepass(Cursor) {

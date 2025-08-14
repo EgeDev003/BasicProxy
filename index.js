@@ -76,7 +76,12 @@ export default {
                     
                     Gamepasses.concat(GamepassResponseData["data"])
 
-                    return new Response(GamepassResponseData, { status: 200 });
+                    const Deneme = {
+                        Data1: Gamepasses,
+                        Data2: GamepassResponseData["data"]
+                    }
+
+                    return new Response(JSON.stringify(Deneme), { status: 200 });
                 }
                 
                 const GPResponse = await GetGamepass();

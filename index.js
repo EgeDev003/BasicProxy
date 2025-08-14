@@ -74,7 +74,7 @@ export default {
                             return GamepassResponse
                         } else {
                             Try ++
-                            setTimeout(() => {
+                            setTimeout(async () => {
                                 await GetGamepass(Cursor)
                             }, WaitTime);
                         }

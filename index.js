@@ -93,15 +93,21 @@ export default {
                         const ImageUrlResponse = await fetch(ImageUrlUrl, {method: "GET"})
 
                         if (!ImageUrlResponse.ok){
-                            console.log("Failed")
-                            return new Response(JSON.stringify({ message: "Image can not getting"}), { status: 405 });
+                            return new Response(JSON.stringify({ message: "Image url can not getting"}), { status: 405 });
                         }
                         
                         const ImageUrlData = await ImageUrlResponse.json()                      
 
                         const ImageUrl = await ImageUrlData["data"][0]["imageUrl"]
 
-                        console.log(ImageUrl)
+                        const ImageDataResponse = fetch(ImageUrl)
+
+                        if (!ImageDataResponse) {
+                            return new Response(JSON.stringify({ message: "Image data can not getting"}), { status: 405 });
+                        }
+
+                        const ImageDataContent =  ImageDataResponse.arrayBuffer()
+                        console.log(ImageDataContent)
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });

@@ -90,6 +90,7 @@ export default {
                     GamepassResponseData["data"].forEach(async function(GamepassData) {
                         const ImageData = await fetch("https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassData["productId"] + "&size=150x150&format=Png&isCircular=false")
                         if (!ImageData.ok){
+                            console.log("Failed")
                             return new Response(JSON.stringify({ message: "Image can not getting"}), { status: 405 });
                         }
                         console.log(ImageData.imageUrl)

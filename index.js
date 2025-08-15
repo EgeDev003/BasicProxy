@@ -115,12 +115,12 @@ export default {
                         
                         const ImageBlob = new Blob([ImageDataContent], { type: "image/png" });
 
-                        GamepassData["name"] = GamepassesResponseData["name"]
+                        GamepassData["name"] = GamepassResponseData["name"]
                         GamepassData["ImageBlob"] = ImageBlob
 
                         Gamepasses.push(GamepassData)
 
-                        return new Response(JSON.stringify(GamepassesResponseData), { status: 200 });
+                        return new Response(JSON.stringify(GamepassResponseData), { status: 200 });
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });

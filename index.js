@@ -68,6 +68,7 @@ export default {
                 let Try = 0                
 
                 const Gamepasses = []
+
                 async function GetGamepass(Cursor) {
                     Cursor = (Cursor || "")
                     const ApiUrl = "https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1&cursor=" + (Cursor || "");
@@ -109,17 +110,16 @@ export default {
                         }
 
                         const ImageDataContent =  await ImageDataResponse.arrayBuffer()
-                        console.log(ImageDataContent)
                         
                         const ImageBlob = new Blob([ImageDataContent], { type: "image/png" });
 
-                        return new Response(ImageBlob, {status: 200})
+                        GamepassData["ImageBlob"] = ImageBlob
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });
                 }
-                
-                const GPResponse = await GetGamepass();              
+
+                const GPResponse = await GetGamepass();
 
                 return GPResponse
             } else {

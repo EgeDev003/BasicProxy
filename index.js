@@ -90,10 +90,6 @@ export default {
                     const NextPageCursor = GamepassesResponseData["nextPageCursor"]
                     
                     for (const GamepassResponseData of GamepassesResponseData["data"]) {
-                        // if (GamepassResponseData["price"]) {
-                        //     continue
-                        // }
-
                         const GamepassData = {}
 
                         const ImageUrlUrl = "https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassResponseData["id"] + "&size=150x150&format=Png&isCircular=false"
@@ -119,12 +115,11 @@ export default {
                         
                         const ImageBlob = new Blob([ImageDataContent], { type: "image/png" });
 
-                        GamepassData["name"] = GamepassResponseData["name"]
+                        GamepassData["Name"] = GamepassResponseData["name"]
+                        GamepassData["Price"] = GamepassResponseData["price"]
                         GamepassData["ImageBlob"] = ImageBlob
 
                         Gamepasses.push(GamepassData)
-
-                        return new Response(ImageBlob, { status: 200 });
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });

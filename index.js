@@ -90,7 +90,7 @@ export default {
                     const NextPageCursor = GamepassesResponseData["nextPageCursor"]
                     
                     for (const GamepassResponseData of GamepassesResponseData["data"]) {
-                        if (!GamepassResponseData["price"]) {
+                        if (GamepassResponseData["price"]) {
                             continue
                         }
 

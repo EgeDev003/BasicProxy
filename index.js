@@ -120,6 +120,10 @@ export default {
                 }
 
                 const GPResponse = await GetGamepass();
+                
+                for (const GamepassData of Gamepasses) {
+                    
+                }
 
                 return GPResponse
             } else {

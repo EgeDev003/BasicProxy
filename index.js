@@ -89,7 +89,15 @@ export default {
                     const GamepassesResponseData = await GamepassResponse.json()
                     const NextPageCursor = GamepassesResponseData["nextPageCursor"]
                     
+                    let IsFirst = false
+
                     for (const GamepassResponseData of GamepassesResponseData["data"]) {
+                        if (IsFirst) {
+                            break
+                        }
+
+                        IsFirst = true
+
                         const GamepassData = {}
 
                         const ImageUrlUrl = "https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassResponseData["id"] + "&size=150x150&format=Png&isCircular=false"

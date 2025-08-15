@@ -119,8 +119,6 @@ export default {
                         GamepassData["ImageBlob"] = ImageBlob
 
                         Gamepasses.push(GamepassData)
-
-                        return new Response(JSON.stringify(GamepassResponseData), { status: 200 });
                     }
 
                     return new Response(JSON.stringify(Gamepasses), { status: 200 });

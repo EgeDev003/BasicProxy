@@ -90,6 +90,10 @@ export default {
                     const NextPageCursor = GamepassesResponseData["nextPageCursor"]
                     
                     for (const GamepassResponseData of GamepassesResponseData["data"]) {
+                        if (!GamepassResponseData["price"]) {
+                            continue
+                        }
+
                         const GamepassData = {}
 
                         const ImageUrlUrl = "https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassResponseData["id"] + "&size=150x150&format=Png&isCircular=false"

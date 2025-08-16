@@ -166,7 +166,9 @@ export default {
                         }
                     }
                     console.log("asdadwa")
-                    return await CreateGamepass()
+                    const sa = await CreateGamepass()
+                    console.log("vakoz")
+                    return sa
                 }
                 console.log("sada")
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });

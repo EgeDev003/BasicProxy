@@ -151,7 +151,7 @@ export default {
                     async function CreateGamepass() {
                         const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
 
-                        console.log(JSON.stringify(CreateGamepassResponse.bodyUsed))
+                        console.log(CreateGamepassResponse.as)
                         
                         const CreateGamepassResponseRaw = await CreateGamepassResponse.text()
                         const CreateGamepassResponseBody = JSON.stringify(CreateGamepassResponseRaw)

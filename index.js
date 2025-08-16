@@ -132,6 +132,8 @@ export default {
                 headers.delete("user-agent");
                 headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
+                console.log(headers.get("x-csrf-token"))
+
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
                     GamepassFormData.append("Name",  GamepassData["Name"]);
@@ -144,15 +146,23 @@ export default {
                         headers: headers,
                         body: GamepassFormData
                     };
+                    
+                    async function CreateGamepass() {
+                        const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
+                    
+                        const CreateGamepassResponseBody = CreateGamepassResponse.json()
+    
+                        if (!CreateGamepassResponse.ok) {
+                            if (data?.errors?.[0]?.message === "XSRF token invalid") {
+                                headers["x-csrf-token"] = res.headers.get("x-csrf-token");
+                            }
 
-                    const CreateGamepassResponse = fetch(CreateGamepassApiUrl, init)
-
-                    if (!CreateGamepassResponse.ok) {
-                        return CreateGamepassResponse
-                        //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
-                    } else {
-                        return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
-                    }
+                            return CreateGamepassResponse
+                            //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
+                        } else {
+                            return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
+                        }
+                    }                    
                 }
 
                 return GPResponse

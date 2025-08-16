@@ -150,7 +150,7 @@ export default {
                     
                     async function CreateGamepass() {
                         const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
-
+                        const Cloned = CreateGamepassResponse.clone()
                         console.log(CreateGamepassResponse.as)
                         
                         const CreateGamepassResponseRaw = await CreateGamepassResponse.text()
@@ -160,7 +160,7 @@ export default {
                             //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
                             // }
 
-                            return CreateGamepassResponse
+                            return Cloned
                             //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
                         } else {
                             return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
@@ -168,7 +168,7 @@ export default {
                     }
 
                     const sa = await CreateGamepass()
-                    return sa.clone()
+                    return sa
                 }
 
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });

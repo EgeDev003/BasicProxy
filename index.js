@@ -153,9 +153,9 @@ export default {
                         const CreateGamepassResponseBody = CreateGamepassResponse.json()
     
                         if (!CreateGamepassResponse.ok) {
-                            if (data?.errors?.[0]?.message === "XSRF token invalid") {
-                                headers["x-csrf-token"] = res.headers.get("x-csrf-token");
-                            }
+                            // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
+                            //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
+                            // }
 
                             return CreateGamepassResponse
                             //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });

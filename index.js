@@ -133,11 +133,11 @@ export default {
                 headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
                 for (const GamepassData of Gamepasses) {
-                    const FormData = new FormData();
-                    FormData.append("Name",  GamepassData["Name"]);
-                    FormData.append("Price", GamepassData["Price"]);
-                    FormData.append("UniverseId", GamepassData["Price"]);
-                    FormData.append("File",  GamepassData["ImageBlob"]);
+                    const GamepassFormData = new FormData();
+                    GamepassFormData.append("Name",  GamepassData["Name"]);
+                    GamepassFormData.append("Price", GamepassData["Price"]);
+                    GamepassFormData.append("UniverseId", GamepassData["Price"]);
+                    GamepassFormData.append("File",  GamepassData["ImageBlob"]);
 
                     const init = {
                         method: "Post",

@@ -78,7 +78,7 @@ export default {
                         }
                     }
                     
-                    console.log("sa2")
+                    console.log("sa3")
                     const GamepassesResponseData = await GamepassResponse.json()
                     const NextPageCursor = GamepassesResponseData["nextPageCursor"]
                     

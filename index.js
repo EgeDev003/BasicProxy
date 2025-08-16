@@ -140,7 +140,7 @@ export default {
                     const GamepassFormData = new FormData();
                     GamepassFormData.append("Name",  GamepassData["Name"]);
                     GamepassFormData.append("Price", GamepassData["Price"]);
-                    GamepassFormData.append("UniverseId", GamepassData["Price"]);
+                    GamepassFormData.append("UniverseId", UniverseId2);
                     GamepassFormData.append("File",  GamepassData["ImageBlob"]);
 
                     const init = {

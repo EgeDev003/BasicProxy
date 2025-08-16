@@ -149,7 +149,7 @@ export default {
                     
                     async function CreateGamepass() {
                         const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
-                        
+                        console.log("sa")
                         const CreateGamepassResponseBody = await CreateGamepassResponse.json()
 
                         if (!CreateGamepassResponse.ok) {

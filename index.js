@@ -154,7 +154,6 @@ export default {
                         console.log(CreateGamepassResponse.as)
                         
                         const CreateGamepassResponseRaw = await CreateGamepassResponse.text()
-                        const CreateGamepassResponseBody = JSON.stringify(CreateGamepassResponseRaw)
 
                         if (!CreateGamepassResponse.ok) {
                             // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
@@ -169,6 +168,7 @@ export default {
                     }
 
                     const sa = await CreateGamepass()
+                    return sa.clone()
                 }
 
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });

@@ -4,6 +4,8 @@ const PeakKey2 = "9FJ6X7WZQ0LTCPK18BVR2Y5M4GHSDAEN"
 const WaitTime = 500
 const MaxTry = 5
 
+const CreateGamepassApiUrl = "https://apis.roblox.com/game-passes/v1/game-passes"
+
 // Export our request handler
 function KeyErrorFunction() {
     return new Response(JSON.stringify({ message: "Key is not true"}), { status: 401 });
@@ -30,18 +32,8 @@ export default {
                     return KeyErrorFunction();
                 }
                 
-                headers.delete("host");
-                headers.delete("roblox-id");
-                headers.delete("user-agent");
-                headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
-                
-                const init = {
-                    method: request.method,
-                    headers,
-                };
-                
                 const ApiUrl = "https://games.roblox.com/v1/games/" + path[2] + "/game-passes" + url.search
-                console.log(ApiUrl)
+
                 return fetch(ApiUrl)
             } else {
                 return WrongApiErrorFunction(); 
@@ -135,8 +127,31 @@ export default {
 
                 const GPResponse = await GetGamepass();
                 
+                headers.delete("host");
+                headers.delete("roblox-id");
+                headers.delete("user-agent");
+                headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+
                 for (const GamepassData of Gamepasses) {
-                    
+                    const FormData = new FormData();
+                    FormData.append("Name",  GamepassData["Name"]);
+                    FormData.append("Price", GamepassData["Price"]);
+                    FormData.append("UniverseId", GamepassData["Price"]);
+                    FormData.append("File",  GamepassData["ImageBlob"]);
+
+                    const init = {
+                        method: "Post",
+                        headers: headers,
+                        body: FormData
+                    };
+
+                    const CreateGamepassResponse = fetch(CreateGamepassApiUrl, init)
+
+                    if (!CreateGamepassResponse.ok) {
+                        return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
+                    } else {
+                        return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
+                    }
                 }
 
                 return GPResponse

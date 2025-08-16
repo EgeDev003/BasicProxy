@@ -134,40 +134,40 @@ export default {
 
                 console.log(headers.get("x-csrf-token"))
 
-                // for (const GamepassData of Gamepasses) {
-                //     const GamepassFormData = new FormData();
-                //     const ImageBlobCopy = new Blob([GamepassData["ImageBlob"]], { type: "image/png" });
-                //     GamepassFormData.append("Name",  GamepassData["Name"]);
-                //     GamepassFormData.append("Price", GamepassData["Price"]);
-                //     GamepassFormData.append("UniverseId", UniverseId2);
-                //     GamepassFormData.append("File",  ImageBlobCopy);
+                for (const GamepassData of Gamepasses) {
+                    const GamepassFormData = new FormData();
+                    const ImageBlobCopy = new Blob([GamepassData["ImageBlob"]], { type: "image/png" });
+                    GamepassFormData.append("Name",  GamepassData["Name"]);
+                    GamepassFormData.append("Price", GamepassData["Price"]);
+                    GamepassFormData.append("UniverseId", UniverseId2);
+                    GamepassFormData.append("File",  ImageBlobCopy);
 
-                //     const init = {
-                //         method: "Post",
-                //         headers: headers,
-                //         body: GamepassFormData
-                //     };
+                    const init = {
+                        method: "Post",
+                        headers: headers,
+                        body: GamepassFormData
+                    };
                     
-                //     async function CreateGamepass() {
-                //         const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
+                    // async function CreateGamepass() {
+                    //     const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
 
-                //         const CreateGamepassResponseBody = await CreateGamepassResponse.json()
+                    //     const CreateGamepassResponseBody = await CreateGamepassResponse.json()
 
-                //         if (!CreateGamepassResponse.ok) {
-                //             // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
-                //             //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
-                //             // }
+                    //     if (!CreateGamepassResponse.ok) {
+                    //         // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
+                    //         //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
+                    //         // }
 
-                //             return CreateGamepassResponse
-                //             //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
-                //         } else {
-                //             return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
-                //         }
-                //     }
+                    //         return CreateGamepassResponse
+                    //         //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
+                    //     } else {
+                    //         return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
+                    //     }
+                    // }
 
-                //     const sa = await CreateGamepass()
-                //     return sa
-                // }
+                    // const sa = await CreateGamepass()
+                    // return sa
+                }
 
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });
                 //return GPResponse

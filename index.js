@@ -150,7 +150,7 @@ export default {
                     async function CreateGamepass() {
                         const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
                         
-                        const CreateGamepassResponseBody = CreateGamepassResponse.json()
+                        const CreateGamepassResponseBody = await CreateGamepassResponse.json()
 
                         if (!CreateGamepassResponse.ok) {
                             // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {

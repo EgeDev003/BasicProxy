@@ -153,7 +153,7 @@ export default {
                         const Cloned = CreateGamepassResponse.clone()
                         console.log(CreateGamepassResponse.as)
                         
-                        const CreateGamepassResponseRaw = await CreateGamepassResponse.text()
+                        const CreateGamepassResponseBody = await CreateGamepassResponse.json()
 
                         if (!CreateGamepassResponse.ok) {
                             // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {

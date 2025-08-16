@@ -166,8 +166,7 @@ export default {
                         }
                     }
 
-                    const sa = await CreateGamepass()
-                    return sa              
+                    return await CreateGamepass()
                 }
                 
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });

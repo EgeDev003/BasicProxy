@@ -165,12 +165,12 @@ export default {
                             return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
                         }
                     }
-
+                    console.log("asdadwa")
                     return await CreateGamepass()
                 }
-                
+                console.log("sada")
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });
-                return GPResponse
+                //return GPResponse
             } else {
                 return WrongApiErrorFunction();
             }

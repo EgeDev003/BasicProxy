@@ -148,25 +148,25 @@ export default {
                         body: GamepassFormData
                     };
                     
-                    // async function CreateGamepass() {
-                    //     const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
+                    async function CreateGamepass() {
+                        const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
 
-                    //     const CreateGamepassResponseBody = await CreateGamepassResponse.json()
+                        const CreateGamepassResponseBody = await CreateGamepassResponse.json()
 
-                    //     if (!CreateGamepassResponse.ok) {
-                    //         // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
-                    //         //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
-                    //         // }
+                        if (!CreateGamepassResponse.ok) {
+                            // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
+                            //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
+                            // }
 
-                    //         return CreateGamepassResponse
-                    //         //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
-                    //     } else {
-                    //         return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
-                    //     }
-                    // }
+                            return CreateGamepassResponse
+                            //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
+                        } else {
+                            return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
+                        }
+                    }
 
-                    // const sa = await CreateGamepass()
-                    // return sa
+                    const sa = await CreateGamepass()
+                    return sa
                 }
 
                 return new Response(JSON.stringify(Gamepasses), { status: 201 });

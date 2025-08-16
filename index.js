@@ -148,7 +148,8 @@ export default {
                     const CreateGamepassResponse = fetch(CreateGamepassApiUrl, init)
 
                     if (!CreateGamepassResponse.ok) {
-                        return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
+                        return CreateGamepassResponse
+                        //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
                     } else {
                         return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
                     }

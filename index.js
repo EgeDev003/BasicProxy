@@ -162,7 +162,9 @@ export default {
                         } else {
                             return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
                         }
-                    }                    
+                    }
+
+                    const sa = await CreateGamepass()                    
                 }
 
                 return GPResponse

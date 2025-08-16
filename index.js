@@ -78,6 +78,7 @@ export default {
                         }
                     }
                     
+                    console.log("sa2")
                     const GamepassesResponseData = await GamepassResponse.json()
                     const NextPageCursor = GamepassesResponseData["nextPageCursor"]
                     
@@ -99,7 +100,8 @@ export default {
                         if (!ImageUrlResponse.ok){
                             return new Response(JSON.stringify({ message: "Image url can not getting"}), { status: 405 });
                         }
-                        
+
+                        console.log("sa2")
                         const ImageUrlData = await ImageUrlResponse.json()
                         console.log(JSON.stringify(ImageUrlData))
 

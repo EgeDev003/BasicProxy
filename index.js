@@ -138,10 +138,11 @@ export default {
 
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
+                    const ImageBlobCopy = new Blob([GamepassData["ImageBlob"]], { type: "image/png" });
                     GamepassFormData.append("Name",  GamepassData["Name"]);
                     GamepassFormData.append("Price", GamepassData["Price"]);
                     GamepassFormData.append("UniverseId", UniverseId2);
-                    GamepassFormData.append("File",  GamepassData["ImageBlob"]);
+                    GamepassFormData.append("File",  ImageBlobCopy);
 
                     const init = {
                         method: "Post",

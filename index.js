@@ -167,7 +167,7 @@ export default {
                     const sa = await CreateGamepass()                    
                 }
                 
-                return new Response(JSON.stringify(Gamepasses), { status: 200 });
+                return new Response(JSON.stringify(Gamepasses), { status: 201 });
                 return GPResponse
             } else {
                 return WrongApiErrorFunction();

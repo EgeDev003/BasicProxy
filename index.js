@@ -142,7 +142,7 @@ export default {
                     const init = {
                         method: "Post",
                         headers: headers,
-                        body: FormData
+                        body: GamepassFormData
                     };
 
                     const CreateGamepassResponse = fetch(CreateGamepassApiUrl, init)

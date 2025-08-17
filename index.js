@@ -118,12 +118,14 @@ export default {
             }
         } else if(path[1] == "copygamepass") {
             if (Request.method === "POST") {
+                console.log("sa")
                 const headers = new headers(Request.headers);
+                console.log("as")
 
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
-
+                console.log("sas")
                 const RequestRawBody = await Request.text();
                 if (!RequestRawBody.trim()) {
                     return new Response(JSON.stringify({ message: "Request body is nil"}), { status: 404 });

@@ -122,6 +122,8 @@ export default {
 
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
+                } else {
+                    return new Response(JSON.stringify({ message: "Key true"}), { status: 200 });
                 }
 
                 const RequestRawBody = await request.text();

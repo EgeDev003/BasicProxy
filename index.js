@@ -104,7 +104,7 @@ export default {
 
         if (path[1] === "gamepass") {
             if (Request.method === "GET") {
-                const headers = new Headers(Request.headers);
+                const headers = new headers(Request.headers);
                 
                 if (headers.get(HeaderKeyName) !== PeakKey) {
                     return KeyErrorFunction();
@@ -118,9 +118,9 @@ export default {
             }
         } else if(path[1] == "copygamepass") {
             if (Request.method === "POST") {
-                const Headers = new Headers(Request.headers);
+                const headers = new headers(Request.headers);
 
-                if (Headers.get(HeaderKeyName) !== PeakKey2) {
+                if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
 
@@ -142,10 +142,10 @@ export default {
 
                 const Gamepasses = GamepassesResponse.json()
 
-                Headers.delete("host");
-                Headers.delete("roblox-id");
-                Headers.delete("user-agent");
-                Headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+                headers.delete("host");
+                headers.delete("roblox-id");
+                headers.delete("user-agent");
+                headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
@@ -160,7 +160,7 @@ export default {
 
                     const Init = {
                         method: "POST",
-                        headers: Headers,
+                        headers: headers,
                         body: GamepassFormData
                     }
 

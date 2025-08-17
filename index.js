@@ -118,7 +118,7 @@ export default {
             }
         } else if(path[1] == "copygamepass") {
             if (request.method === "POST") {
-                const headers = new headers(request.headers);
+                const headers = new Headers(request.headers);
 
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();

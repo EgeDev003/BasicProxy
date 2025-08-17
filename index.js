@@ -98,13 +98,13 @@ async function GetGamepasses(GameId) {
 }
 
 export default {
-    async fetch(Request, env) {
-        const url = new URL(Request.url);
+    async fetch(request, env) {
+        const url = new URL(request.url);
         const path = url.pathname.split(/\//);
 
         if (path[1] === "gamepass") {
-            if (Request.method === "GET") {
-                const headers = new headers(Request.headers);
+            if (request.method === "GET") {
+                const headers = new headers(request.headers);
                 
                 if (headers.get(HeaderKeyName) !== PeakKey) {
                     return KeyErrorFunction();
@@ -117,18 +117,16 @@ export default {
                 return WrongApiErrorFunction(); 
             }
         } else if(path[1] == "copygamepass") {
-            if (Request.method === "POST") {
-                console.log("sa")
-                const headers = new headers(Request.headers);
-                console.log("as")
+            if (request.method === "POST") {
+                const headers = new headers(request.headers);
 
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
-                console.log("sas")
-                const RequestRawBody = await Request.text();
+
+                const RequestRawBody = await request.text();
                 if (!RequestRawBody.trim()) {
-                    return new Response(JSON.stringify({ message: "Request body is nil"}), { status: 404 });
+                    return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });
                 }
 
                 const RequestBody = JSON.parse(RequestRawBody);

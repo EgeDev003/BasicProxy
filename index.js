@@ -4,7 +4,15 @@ const PeakKey2 = "9FJ6X7WZQ0LTCPK18BVR2Y5M4GHSDAEN"
 const WaitTime = 500
 const MaxTry = 5
 
-const CreateGamepassApiUrl = "https://apis.roblox.com/game-passes/v1/game-passes"
+const HeaderKeyName = "SecurityKey"
+
+const Scheme = "https://"
+const Subdomain = "apis"
+const Domain = "roblox.com"
+
+const CreateGamepassApiUrl = Scheme + Subdomain + "." + Domain + "/game-passes/v1/game-passes"
+const GetGamepassesApiUrl = Scheme + Subdomain + "." + Domain + "/game-passes/v1/game-passes/universes/{UNIVERSEID}/creator?count=100&cursor="
+const GetImageUrlApiUrl = Scheme + "thumbnails" +  "." + Domain +  "/v1/game-passes?gamePassIds={PRODUCTID}&size=150x150&format=Png&isCircular=false"
 
 // Export our request handler
 function KeyErrorFunction() {
@@ -15,20 +23,90 @@ function WrongApiErrorFunction() {
     return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 402 });
 }
 
-function delay(ms) {
+function Delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function GetGamepasses(GameId) {
+    const GetGamepassesApiUrlChanged = GetGamepassesApiUrl.replace("{UNIVERSEID}", GameId)
+
+    const Gamepasses = []
+
+    async function getGamepasses(Cursor) {
+        const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET"});
+
+        const GamepassesBody = await GamepassesResponse.json();
+
+        if (!GamepassesResponse.ok) {
+            if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
+                return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});
+            } else if(GamepassesBody?.["errors"]?.[0]?.["message"] == "User is not authenticated") {
+                return new Response(JSON.stringify({ message: "Change cookie"}, {status: 201}))
+            } else {
+                return new Response(JSON.stringify({ message: "Undefined error"}, {status: 407}));
+            }
+        }
+
+        for (const GamepassResponseData of GamepassesBody["gamePasses"]) {
+            const GetImageUrlApiUrlChanged = GetImageUrlApiUrl.replace("{PRODUCTID}", GamepassResponseData["gamePassId"]);
+            const GetImageUrlResponse = await fetch(GetImageUrlApiUrlChanged, {method: "GET"});
+
+            if (!GetImageUrlResponse.ok) {
+                return GetImageUrlResponse
+            }
+
+            const GetImageUrlBody = await GetImageUrlResponse.json();
+            const ImageUrl = GetImageUrlBody["data"][0]["imageUrl"]
+
+            const ImageUrlResponse = await fetch(ImageUrl, {method: "GET"});
+
+            if (!ImageUrlResponse.ok) {
+                return ImageUrlResponse
+            }
+
+            const ImageUrlContent = ImageUrlResponse.arrayBuffer()
+            const ImageBlob = new Blob([ImageUrlContent], { type: "image/png" });
+
+            const GamepassData = {}
+
+            GamepassData["Name"] = GamepassResponseData["name"]
+            GamepassData["Description"] = GamepassResponseData["description"]
+            GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
+            GamepassData["IsForSale"] = GamepassResponseData["priceInformation"]
+            GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
+            //Image
+            GamepassData["ImageBlob"] = ImageBlob
+            //UniverseId
+
+            Gamepasses.push(GamepassData)
+        }
+
+        if (GamepassesBody["cursor"]) {
+            await getGamepasses[GamepassesBody["cursor"]]
+        }
+
+        return new Response(JSON.stringify({ message: "Success"}, {status: 200}))
+    }
+
+    const GamepassResponse = await getGamepasses();
+    
+    if (!GamepassResponse.ok) {
+        return GamepassResponse
+    }
+
+    return new Response(JSON.stringify(Gamepasses), { status: 201 })
+}
+
 export default {
-    async fetch(request, env) {
-        const url = new URL(request.url);
+    async fetch(Request, env) {
+        const url = new URL(Request.url);
         const path = url.pathname.split(/\//);
 
         if (path[1] === "gamepass") {
-            if (request.method === "GET") {
-                const headers = new Headers(request.headers);
+            if (Request.method === "GET") {
+                const headers = new Headers(Request.headers);
                 
-                if (headers.get("key") !== PeakKey) {
+                if (headers.get(HeaderKeyName) !== PeakKey) {
                     return KeyErrorFunction();
                 }
                 
@@ -38,141 +116,58 @@ export default {
             } else {
                 return WrongApiErrorFunction(); 
             }
-        } else if(path[1] == "CopyGamepass") {
-            if (request.method === "POST") {
-                const headers = new Headers(request.headers);
+        } else if(path[1] == "copygamepass") {
+            if (Request.method === "POST") {
+                const Headers = new Headers(Request.headers);
 
-                if (headers.get("key") !== PeakKey2) {
+                if (Headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
-                
-                const rawData = await request.text()
 
-                if (!rawData.trim()) {
-                    return new Response(JSON.stringify({ message: "Body is nil"}), { status: 404 });
-                }
-                
-                const Data = JSON.parse(rawData); 
-
-                const UniverseId1 = Data.UniverseId1
-                const UniverseId2 = Data.UniverseId2
-
-                let Try = 0                
-
-                const Gamepasses = []
-
-                async function GetGamepass(Cursor) {
-                    Cursor = (Cursor || "")
-                    const ApiUrl = "https://games.roblox.com/v1/games/" + UniverseId1 + "/game-passes?limit=100&sortOrder=1&cursor=" + (Cursor || "");
-                    console.log(ApiUrl)
-
-                    const GamepassResponse = await fetch(ApiUrl);
-
-                    if (!GamepassResponse.ok) {
-                        if (Try >= MaxTry) {
-                            return GamepassResponse
-                        } else {
-                            Try ++
-                            delay(WaitTime)
-                            await GetGamepass(Cursor)
-                        }
-                    }
-                    
-                    const GamepassesResponseData = await GamepassResponse.json()
-                    const NextPageCursor = GamepassesResponseData["nextPageCursor"]
-                    
-                    let IsFirst = false
-
-                    for (const GamepassResponseData of GamepassesResponseData["data"]) {
-                        if (IsFirst) {
-                            break
-                        }
-
-                        IsFirst = true
-
-                        const GamepassData = {}
-
-                        const ImageUrlUrl = "https://thumbnails.roblox.com/v1/game-passes?gamePassIds=" + GamepassResponseData["id"] + "&size=150x150&format=Png&isCircular=false"
-                        console.log(ImageUrlUrl)
-                        const ImageUrlResponse = await fetch(ImageUrlUrl, {method: "GET"})
-
-                        if (!ImageUrlResponse.ok){
-                            return new Response(JSON.stringify({ message: "Image url can not getting"}), { status: 405 });
-                        }
-
-                        const ImageUrlData = await ImageUrlResponse.json()
-                        console.log(JSON.stringify(ImageUrlData))
-
-                        const ImageUrl = await ImageUrlData["data"][0]["imageUrl"]
-
-                        const ImageDataResponse = await fetch(ImageUrl)
-
-                        if (!ImageDataResponse) {
-                            return new Response(JSON.stringify({ message: "Image data can not getting"}), { status: 405 });
-                        }
-
-                        const ImageDataContent =  await ImageDataResponse.arrayBuffer()
-                        
-                        const ImageBlob = new Blob([ImageDataContent], { type: "image/png" });
-
-                        GamepassData["Name"] = GamepassResponseData["name"]
-                        GamepassData["Price"] = GamepassResponseData["price"]
-                        GamepassData["ImageBlob"] = ImageBlob
-
-                        Gamepasses.push(GamepassData)
-                    }
-
-                    return new Response(JSON.stringify(Gamepasses), { status: 200 });
+                const RequestRawBody = await Request.text();
+                if (!RequestRawBody.trim()) {
+                    return new Response(JSON.stringify({ message: "Request body is nil"}), { status: 404 });
                 }
 
-                const GPResponse = await GetGamepass();
-                
-                headers.delete("host");
-                headers.delete("roblox-id");
-                headers.delete("user-agent");
-                headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+                const RequestBody = JSON.parse(RequestRawBody);
 
-                console.log(headers.get("x-csrf-token"))
+                const UniverseId1 = RequestBody.UniverseId1
+                const UniverseId2 = RequestBody.UniverseId2
+
+                const GamepassesResponse = await GetGamepasses(UniverseId1)
+                
+                if (!GamepassesResponse.ok) {
+                    return GamepassesResponse
+                }
+
+                const Gamepasses = GamepassesResponse.json()
+
+                Headers.delete("host");
+                Headers.delete("roblox-id");
+                Headers.delete("user-agent");
+                Headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
-                    const ImageBlobCopy = new Blob([GamepassData["ImageBlob"]], { type: "image/png" });
-                    GamepassFormData.append("Name",  GamepassData["Name"]);
-                    GamepassFormData.append("Price", GamepassData["Price"]);
-                    GamepassFormData.append("UniverseId", UniverseId2);
-                    GamepassFormData.append("File",  ImageBlobCopy);
 
-                    const init = {
-                        method: "Post",
-                        headers: headers,
+                    GamepassFormData.set("Name",                      GamepassData["Name"])
+                    GamepassFormData.set("Description",               GamepassData["Description"])
+                    GamepassFormData.set("Price",                     GamepassData["Price"])
+                    GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
+                    GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
+                    GamepassFormData.set("UniverseId",                UniverseId2)
+                    GamepassFormData.set("File",                      GamepassData["ImageBlob"])
+
+                    const Init = {
+                        method: "POST",
+                        headers: Headers,
                         body: GamepassFormData
-                    };
-                    
-                    async function CreateGamepass() {
-                        const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, init)
-                        const Cloned = CreateGamepassResponse.clone()
-                        console.log(CreateGamepassResponse.as)
-                        
-                        const CreateGamepassResponseBody = await CreateGamepassResponse.json()
-
-                        if (!CreateGamepassResponse.ok) {
-                            // if (CreateGamepassResponseBody?.errors?.[0]?.message === "XSRF token invalid") {
-                            //     headers["x-csrf-token"] = res.headers.get("x-csrf-token");
-                            // }
-
-                            return Cloned
-                            //return new Response(JSON.stringify({ message: "Gamepass did not create"}), { status: 408 });
-                        } else {
-                            return new Response(JSON.stringify({ message: "Gamepass created"}), { status: 200 });
-                        }
                     }
 
-                    const sa = await CreateGamepass()
-                    return sa
-                }
+                    const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, Init)
 
-                return new Response(JSON.stringify(Gamepasses), { status: 201 });
-                //return GPResponse
+                    return CreateGamepassResponse
+                }
             } else {
                 return WrongApiErrorFunction();
             }

@@ -27,13 +27,13 @@ function Delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function GetGamepasses(GameId) {
+async function GetGamepasses(GameId, headers) {
     const GetGamepassesApiUrlChanged = GetGamepassesApiUrl.replace("{UNIVERSEID}", GameId)
 
     const Gamepasses = []
 
     async function getGamepasses(Cursor) {
-        const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET"});
+        const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers = headers});
 
         const GamepassesBody = await GamepassesResponse.json();
 
@@ -134,18 +134,18 @@ export default {
                 const UniverseId1 = RequestBody.UniverseId1
                 const UniverseId2 = RequestBody.UniverseId2
 
-                const GamepassesResponse = await GetGamepasses(UniverseId1)
+                headers.delete("host");
+                headers.delete("roblox-id");
+                headers.delete("user-agent");
+                headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+                
+                const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
                 
                 if (!GamepassesResponse.ok) {
                     return GamepassesResponse
                 }
 
                 const Gamepasses = GamepassesResponse.json()
-
-                headers.delete("host");
-                headers.delete("roblox-id");
-                headers.delete("user-agent");
-                headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
 
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();

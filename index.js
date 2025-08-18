@@ -164,6 +164,7 @@ export default {
                     const Init = {
                         method: "POST",
                         headers: headers,
+                        body: JSON.stringify({UniverseId: UniverseId2})
                         //body: GamepassFormData
                     }
 

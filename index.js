@@ -167,7 +167,7 @@ export default {
                     }
 
                     console.log(GamepassFormData)
-                    formData.forEach((value, key) => {
+                    GamepassFormData.forEach((value, key) => {
                         console.log(key, value);
                     });
                     

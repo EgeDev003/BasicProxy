@@ -72,7 +72,7 @@ async function GetGamepasses(GameId, headers) {
             GamepassData["Name"] = GamepassResponseData["name"]
             GamepassData["Description"] = GamepassResponseData["description"]
             GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
-            GamepassData["IsForSale"] = GamepassResponseData["priceInformation"]
+            GamepassData["IsForSale"] = GamepassResponseData["isForSale"]
             GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
             //Image
             GamepassData["ImageBlob"] = ImageBlob

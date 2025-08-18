@@ -166,6 +166,8 @@ export default {
                         body: GamepassFormData
                     }
 
+                    console.log(GamepassFormData)
+                    
                     const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, Init)
 
                     return CreateGamepassResponse

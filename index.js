@@ -167,6 +167,9 @@ export default {
                     }
 
                     console.log(GamepassFormData)
+                    formData.forEach((value, key) => {
+                        console.log(key, value);
+                    });
                     
                     const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, Init)
 

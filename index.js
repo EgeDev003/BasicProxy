@@ -41,7 +41,7 @@ async function GetGamepasses(GameId, headers) {
             if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
                 return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});
             } else if(GamepassesBody?.["errors"]?.[0]?.["message"] == "User is not authenticated") {
-                return new Response(JSON.stringify({ message: "Change cookie"}, {status: 201}))
+                return new Response(JSON.stringify({ message: "Change cookie"}), {status: 201});
             } else {
                 return new Response(JSON.stringify({ message: "Undefined error"}, {status: 407}));
             }
@@ -64,7 +64,7 @@ async function GetGamepasses(GameId, headers) {
                 return ImageUrlResponse
             }
 
-            const ImageUrlContent = ImageUrlResponse.arrayBuffer()
+            const ImageUrlContent = await ImageUrlResponse.arrayBuffer()
             const ImageBlob = new Blob([ImageUrlContent], { type: "image/png" });
 
             const GamepassData = {}
@@ -82,7 +82,7 @@ async function GetGamepasses(GameId, headers) {
         }
 
         if (GamepassesBody["cursor"]) {
-            await getGamepasses[GamepassesBody["cursor"]]
+            await getGamepasses(GamepassesBody["cursor"])
         }
 
         return new Response(JSON.stringify({ message: "Success"}, {status: 200}))
@@ -135,10 +135,6 @@ export default {
                 const UniverseId2 = RequestBody["UniverseId2"]
                 console.log(typeof UniverseId1)
                 console.log(typeof UniverseId2)
-                
-                if (UniverseId2 === "") {
-                    console.log("NEDEN")
-                }
 
                 headers.delete("host");
                 headers.delete("roblox-id");
@@ -161,7 +157,7 @@ export default {
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
-                    GamepassFormData.append("UniverseId",                  UniverseId2)
+                    GamepassFormData.set("UniverseId",                UniverseId2)
                     //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
                     const Init = {

@@ -133,6 +133,8 @@ export default {
 
                 const UniverseId1 = RequestBody.UniverseId1
                 const UniverseId2 = RequestBody.UniverseId2
+                console.log(UniverseId1)
+                console.log(UniverseId2)
 
                 headers.delete("host");
                 headers.delete("roblox-id");

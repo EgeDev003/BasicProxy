@@ -36,7 +36,7 @@ async function GetGamepasses(GameId, headers) {
         const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers: headers});
 
         const GamepassesBody = await GamepassesResponse.json();
-
+        console.log("as)
         if (!GamepassesResponse.ok) {
             if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
                 return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});
@@ -46,7 +46,7 @@ async function GetGamepasses(GameId, headers) {
                 return new Response(JSON.stringify({ message: "Undefined error"}, {status: 407}));
             }
         }
-
+        console.log("sa")
         for (const GamepassResponseData of GamepassesBody["gamePasses"]) {
             const GetImageUrlApiUrlChanged = GetImageUrlApiUrl.replace("{PRODUCTID}", GamepassResponseData["gamePassId"]);
             const GetImageUrlResponse = await fetch(GetImageUrlApiUrlChanged, {method: "GET"});

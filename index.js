@@ -145,9 +145,7 @@ export default {
                     return GamepassesResponse
                 }
 
-                const Gamepasses = GamepassesResponse.json()
-                
-                return new Response(Gamepasses, {status: 202})
+                const Gamepasses = await GamepassesResponse.json()
 
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();

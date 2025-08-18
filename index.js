@@ -145,9 +145,9 @@ export default {
                     return GamepassesResponse
                 }
 
-                const Gamepasses = GamepassesResponse.json()
-
                 return GamepassesResponse
+
+                const Gamepasses = GamepassesResponse.json()
                 
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();

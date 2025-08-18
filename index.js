@@ -189,7 +189,7 @@ export default {
             const headers = new Headers(request.headers);
             
             const sa = new FormData();
-            sa.append("UniverseId", 8413355123)
+            sa.append("UniverseId", "8413355123")
 
             const init = {method: "POST", headers: headers, body: sa}
 

@@ -164,7 +164,7 @@ export default {
                     const Init = {
                         method: "POST",
                         headers: headers,
-                        body: GamepassFormData
+                        //body: GamepassFormData
                     }
 
                     console.log(GamepassFormData)

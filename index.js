@@ -104,7 +104,7 @@ export default {
 
         if (path[1] === "gamepass") {
             if (request.method === "GET") {
-                const headers = new headers(request.headers);
+                const headers = new Headers(request.headers);
                 
                 if (headers.get(HeaderKeyName) !== PeakKey) {
                     return KeyErrorFunction();

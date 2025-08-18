@@ -29,14 +29,14 @@ function Delay(ms) {
 
 async function GetGamepasses(GameId, headers) {
     const GetGamepassesApiUrlChanged = GetGamepassesApiUrl.replace("{UNIVERSEID}", GameId)
-
+    console.log(GetGamepassesApiUrlChanged)
     const Gamepasses = []
 
     async function getGamepasses(Cursor) {
         const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers: headers});
 
         const GamepassesBody = await GamepassesResponse.json();
-
+        return new Response(JSON.stringify(GamepassesBody), {status: 203});
         if (!GamepassesResponse.ok) {
             if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
                 return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});

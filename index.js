@@ -188,7 +188,7 @@ export default {
             
             const headers = new Headers(request.headers);
             
-            const sa = new FormData[]
+            const sa = new FormData();
 
             const init = {method: "POST", headers: headers, body: sa}
 

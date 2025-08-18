@@ -136,8 +136,8 @@ export default {
                 console.log(typeof UniverseId1)
                 console.log(typeof UniverseId2)
 
-                headers.delete("host");
-                headers.delete("roblox-id");
+                //headers.delete("host");
+                //headers.delete("roblox-id");
                 headers.delete("user-agent");
                 headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
                 

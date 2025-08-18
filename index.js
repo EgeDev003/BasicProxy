@@ -36,7 +36,7 @@ async function GetGamepasses(GameId, headers) {
         const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers: headers});
 
         const GamepassesBody = await GamepassesResponse.json();
-        console.log("as)
+        console.log("as")
         if (!GamepassesResponse.ok) {
             if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
                 return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});

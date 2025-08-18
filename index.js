@@ -131,8 +131,8 @@ export default {
 
                 const RequestBody = JSON.parse(RequestRawBody);
                 console.log(RequestBody)
-                const UniverseId1 = RequestBody.UniverseId1
-                const UniverseId2 = RequestBody.UniverseId2
+                const UniverseId1 = RequestBody["UniverseId1"]
+                const UniverseId2 = RequestBody["UniverseId2"]
                 console.log(UniverseId1)
                 console.log(UniverseId2)
 

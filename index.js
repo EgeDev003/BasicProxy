@@ -69,13 +69,13 @@ async function GetGamepasses(GameId, headers) {
 
             const GamepassData = {}
 
-            GamepassData["Name"] = GamepassResponseData["name"]
-            GamepassData["Description"] = GamepassResponseData["description"]
-            GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
-            GamepassData["IsForSale"] = GamepassResponseData["isForSale"]
+            //GamepassData["Name"] = GamepassResponseData["name"]
+            //GamepassData["Description"] = GamepassResponseData["description"]
+            //GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
+            //GamepassData["IsForSale"] = GamepassResponseData["isForSale"]
             //GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
             //Image
-            GamepassData["ImageBlob"] = ImageBlob
+            //GamepassData["ImageBlob"] = ImageBlob
             //UniverseId
 
             Gamepasses.push(GamepassData)
@@ -152,13 +152,13 @@ export default {
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
 
-                    GamepassFormData.set("Name",                      GamepassData["Name"])
-                    GamepassFormData.set("Description",               GamepassData["Description"])
-                    GamepassFormData.set("Price",                     GamepassData["Price"])
-                    GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
+                    //GamepassFormData.set("Name",                      GamepassData["Name"])
+                    //GamepassFormData.set("Description",               GamepassData["Description"])
+                    //GamepassFormData.set("Price",                     GamepassData["Price"])
+                    //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
                     GamepassFormData.set("UniverseId",                UniverseId2)
-                    GamepassFormData.set("File",                      GamepassData["ImageBlob"])
+                    //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
                     const Init = {
                         method: "POST",

@@ -89,11 +89,11 @@ async function GetGamepasses(GameId, headers) {
     }
 
     const GamepassResponse = await getGamepasses();
-    
+    console.log("he")
     if (!GamepassResponse.ok) {
         return GamepassResponse
     }
-
+    console.log("eh")
     return new Response(JSON.stringify(Gamepasses), { status: 201 })
 }
 
@@ -142,7 +142,7 @@ export default {
                 headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
                 
                 const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
-                
+                console.log("batin")
                 if (!GamepassesResponse.ok) {
                     return GamepassesResponse
                 }

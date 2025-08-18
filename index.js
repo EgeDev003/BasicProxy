@@ -73,7 +73,7 @@ async function GetGamepasses(GameId, headers) {
             GamepassData["Description"] = GamepassResponseData["description"]
             GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
             GamepassData["IsForSale"] = GamepassResponseData["isForSale"]
-            GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
+            //GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
             //Image
             GamepassData["ImageBlob"] = ImageBlob
             //UniverseId
@@ -156,7 +156,7 @@ export default {
                     GamepassFormData.set("Description",               GamepassData["Description"])
                     GamepassFormData.set("Price",                     GamepassData["Price"])
                     GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
-                    GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
+                    //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
                     GamepassFormData.set("UniverseId",                UniverseId2)
                     GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 

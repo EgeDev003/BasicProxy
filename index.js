@@ -146,7 +146,7 @@ export default {
                 if (!GamepassesResponse.ok) {
                     return GamepassesResponse
                 }
-
+                console.log("assin")
                 const Gamepasses = await GamepassesResponse.json()
 
                 for (const GamepassData of Gamepasses) {

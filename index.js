@@ -16,11 +16,11 @@ const GetImageUrlApiUrl = Scheme + "thumbnails" +  "." + Domain +  "/v1/game-pas
 
 // Export our request handler
 function KeyErrorFunction() {
-    return new Response(JSON.stringify({ message: "Key is not true"}), { status: 401 });
+    return new Response(JSON.stringify({ message: "Key is not true" }), { status: 401 });
 }
 
 function WrongApiErrorFunction() {
-    return new Response(JSON.stringify({ message: "Wrong api method"}), { status: 402 });
+    return new Response(JSON.stringify({ message: "Wrong api method" }), { status: 402 });
 }
 
 function Delay(ms) {
@@ -39,11 +39,11 @@ async function GetGamepasses(GameId, headers) {
         
         if (!GamepassesResponse.ok) {
             if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
-                return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});
+                return new Response(JSON.stringify({ message: "Authentication cookie is empty" }), {status: 407});
             } else if(GamepassesBody?.["errors"]?.[0]?.["message"] == "User is not authenticated") {
-                return new Response(JSON.stringify({ message: "Change cookie"}), {status: 201});
+                return new Response(JSON.stringify({ message: "Change cookie" }), {status: 201});
             } else {
-                return new Response(JSON.stringify({ message: "Undefined error"}, {status: 407}));
+                return new Response(JSON.stringify({ message: "Undefined error" }, {status: 407}));
             }
         }
 
@@ -69,13 +69,13 @@ async function GetGamepasses(GameId, headers) {
 
             const GamepassData = {}
 
-            //GamepassData["Name"] = GamepassResponseData["name"]
-            //GamepassData["Description"] = GamepassResponseData["description"]
-            //GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
-            //GamepassData["IsForSale"] = GamepassResponseData["isForSale"]
-            //GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
+            GamepassData["Name"] = GamepassResponseData["name"]
+            GamepassData["Description"] = GamepassResponseData["description"]
+            GamepassData["Price"] = GamepassResponseData["priceInformation"]["defaultPriceInRobux"]
+            GamepassData["IsForSale"] = GamepassResponseData["isForSale"]
+            GamepassData["IsRegionalPricingEnabled"] = GamepassResponseData["priceInformation"]["enabledFeatures"].includes["RegionalPricing"]
             //Image
-            //GamepassData["ImageBlob"] = ImageBlob
+            GamepassData["ImageBlob"] = ImageBlob
             //UniverseId
 
             Gamepasses.push(GamepassData)
@@ -184,7 +184,7 @@ export default {
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
         } else {
-            return new Response(JSON.stringify({ message: "Undefined method"}), { status: 400 })
+            return new Response(JSON.stringify({ message: "Undefined method" }), { status: 400 })
         }
     }
 };

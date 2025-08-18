@@ -11,7 +11,7 @@ const Subdomain = "apis"
 const Domain = "roblox.com"
 
 const CreateGamepassApiUrl = Scheme + Subdomain + "." + Domain + "/game-passes/v1/game-passes"
-const GetGamepassesApiUrl = Scheme + Subdomain + "." + Domain + "/game-passes/v1/game-passes/universes/{UNIVERSEID}/creator?count=100&cursor="
+const GetGamepassesApiUrl = Scheme + Subdomain + "." + Domain + "/game-passes/v1/game-passes/universes/{UNIVERSEID}/creator?count=100"
 const GetImageUrlApiUrl = Scheme + "thumbnails" +  "." + Domain +  "/v1/game-passes?gamePassIds={PRODUCTID}&size=150x150&format=Png&isCircular=false"
 
 // Export our request handler

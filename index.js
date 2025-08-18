@@ -36,7 +36,7 @@ async function GetGamepasses(GameId, headers) {
         const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers: headers});
 
         const GamepassesBody = await GamepassesResponse.json();
-        console.log("as")
+
         if (!GamepassesResponse.ok) {
             if (GamepassesBody?.["errors"]?.[0]?.["message"] == "Authentication cookie is empty") {
                 return new Response(JSON.stringify({ message: "Authentication cookie is empty"}), {status: 407});
@@ -46,7 +46,7 @@ async function GetGamepasses(GameId, headers) {
                 return new Response(JSON.stringify({ message: "Undefined error"}, {status: 407}));
             }
         }
-        console.log("sa")
+
         for (const GamepassResponseData of GamepassesBody["gamePasses"]) {
             const GetImageUrlApiUrlChanged = GetImageUrlApiUrl.replace("{PRODUCTID}", GamepassResponseData["gamePassId"]);
             const GetImageUrlResponse = await fetch(GetImageUrlApiUrlChanged, {method: "GET"});
@@ -89,11 +89,11 @@ async function GetGamepasses(GameId, headers) {
     }
 
     const GamepassResponse = await getGamepasses();
-    console.log("he")
+
     if (!GamepassResponse.ok) {
         return GamepassResponse
     }
-    console.log("eh")
+
     return new Response(JSON.stringify(Gamepasses), { status: 201 })
 }
 
@@ -142,11 +142,11 @@ export default {
                 headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
                 
                 const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
-                console.log("batin")
+
                 if (!GamepassesResponse.ok) {
                     return GamepassesResponse
                 }
-                console.log("assin")
+
                 const Gamepasses = await GamepassesResponse.json()
 
                 for (const GamepassData of Gamepasses) {
@@ -175,6 +175,8 @@ export default {
 
                     return CreateGamepassResponse
                 }
+
+                return new Response(JSON.stringify({Gamepasses}, {status: 200}))
             } else {
                 return WrongApiErrorFunction();
             }

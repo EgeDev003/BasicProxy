@@ -164,7 +164,6 @@ export default {
                     const Init = {
                         method: "POST",
                         headers: headers,
-                        body: JSON.stringify({UniverseId: UniverseId2})
                         //body: GamepassFormData
                     }
 
@@ -184,6 +183,19 @@ export default {
             }
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
+        } else if (path[1] === "deneme") {
+            console.log(CreateGamepassApiUrl)
+            
+            const headers = new Headers(request.headers);
+            
+            const sa = new FormData[]
+
+            const init = {method: "POST", headers: headers, body: sa}
+
+            const response = await fetch(CreateGamepassApiUrl, init)
+
+            return response
+
         } else {
             return new Response(JSON.stringify({ message: "Undefined method" }), { status: 400 })
         }

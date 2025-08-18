@@ -92,6 +92,8 @@ async function GetGamepasses(GameId, headers) {
 
     if (!GamepassResponse.ok) {
         return GamepassResponse
+    } else {
+        return GamepassResponse
     }
 
     return new Response(JSON.stringify(Gamepasses), { status: 201 })
@@ -145,6 +147,8 @@ export default {
                 const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
 
                 if (!GamepassesResponse.ok) {
+                    return GamepassesResponse
+                } else {
                     return GamepassesResponse
                 }
 

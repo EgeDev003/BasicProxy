@@ -33,7 +33,7 @@ async function GetGamepasses(GameId, headers) {
     const Gamepasses = []
 
     async function getGamepasses(Cursor) {
-        const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers = headers});
+        const GamepassesResponse = await fetch(GetGamepassesApiUrlChanged + (Cursor || ""), {method: "GET", headers: headers});
 
         const GamepassesBody = await GamepassesResponse.json();
 

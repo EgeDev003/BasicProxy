@@ -133,8 +133,8 @@ export default {
                 console.log(RequestBody)
                 const UniverseId1 = RequestBody["UniverseId1"]
                 const UniverseId2 = RequestBody["UniverseId2"]
-                console.log(UniverseId1)
-                console.log(UniverseId2)
+                console.log(typeof UniverseId1)
+                console.log(typeof UniverseId2)
 
                 headers.delete("host");
                 headers.delete("roblox-id");

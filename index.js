@@ -123,6 +123,7 @@ export default {
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
+                headers.delete(HeaderKeyName)
                 
                 const RequestRawBody = await request.text();
                 if (!RequestRawBody.trim()) {

@@ -135,6 +135,10 @@ export default {
                 const UniverseId2 = RequestBody["UniverseId2"]
                 console.log(typeof UniverseId1)
                 console.log(typeof UniverseId2)
+                
+                if (UniverseId2 === "") {
+                    console.log("NEDEN")
+                }
 
                 headers.delete("host");
                 headers.delete("roblox-id");
@@ -157,7 +161,7 @@ export default {
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
-                    GamepassFormData.set("UniverseId",                UniverseId2)
+                    GamepassFormData.set("UniverseId",                  UniverseId2)
                     //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
                     const Init = {

@@ -142,15 +142,15 @@ export default {
                 //headers.delete("user-agent");
                 //headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
                 
-                const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
+                //const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
 
-                if (!GamepassesResponse.ok) {
-                    return GamepassesResponse
-                }
+                //if (!GamepassesResponse.ok) {
+                    //return GamepassesResponse
+                //}
 
-                const Gamepasses = await GamepassesResponse.json()
+                //const Gamepasses = await GamepassesResponse.json()
 
-                for (const GamepassData of Gamepasses) {
+                //for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
 
                     ///GamepassFormData.set("Name",                        GamepassData["Name"])
@@ -167,10 +167,10 @@ export default {
                         body: GamepassFormData
                     }
 
-                    console.log(GamepassFormData)
-                    GamepassFormData.forEach((value, key) => {
-                        console.log(key, value);
-                    });
+                    //console.log(GamepassFormData)
+                    //GamepassFormData.forEach((value, key) => {
+                        //console.log(key, value);
+                    //});
                     
                     const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, Init)
 

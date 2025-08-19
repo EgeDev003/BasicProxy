@@ -153,12 +153,12 @@ export default {
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
 
-                    //GamepassFormData.set("Name",                      GamepassData["Name"])
+                    GamepassFormData.set("Name",                        GamepassData["Name"])
                     //GamepassFormData.set("Description",               GamepassData["Description"])
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
-                    GamepassFormData.append("UniverseId",               parseInt(UniverseId2, 10))
+                    GamepassFormData.append("UniverseId",               "8413355123")
                     //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
                     const Init = {
@@ -196,7 +196,6 @@ export default {
             const response = await fetch(CreateGamepassApiUrl, init)
 
             return response
-
         } else {
             return new Response(JSON.stringify({ message: "Undefined method" }), { status: 400 })
         }

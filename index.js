@@ -123,7 +123,8 @@ export default {
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
-                
+                headers.delete(HeaderKeyName)                
+
                 const GamepassFormData = new FormData();
                 GamepassFormData.append("UniverseId", "8413355123")
     

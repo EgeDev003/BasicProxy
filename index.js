@@ -178,9 +178,9 @@ export default {
                 //}
 
                 return new Response(JSON.stringify({Gamepasses}, {status: 200}))
-            } else {
-                return WrongApiErrorFunction();
-            }
+            } //else {
+                //return WrongApiErrorFunction();
+            //}
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
         } else if (path[1] === "deneme") {

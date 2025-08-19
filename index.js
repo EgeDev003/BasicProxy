@@ -125,7 +125,7 @@ export default {
                 }
                 headers.delete(HeaderKeyName)
 
-                const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
+                const GamepassesResponse = await GetGamepasses("8413355123", headers)
 
                 if (!GamepassesResponse.ok) {
                     return GamepassesResponse

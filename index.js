@@ -116,8 +116,8 @@ export default {
             } else {
                 return WrongApiErrorFunction(); 
             }
-        } else if(path[1] == "copygamepass") {
-            if (request.method === "POST") {
+        } else if(path[1] === "copygamepass") {
+            //if (request.method === "POST") {
                 const headers = new Headers(request.headers);
 
                 //if (headers.get(HeaderKeyName) !== PeakKey2) {
@@ -177,7 +177,7 @@ export default {
                     return CreateGamepassResponse
                 //}
 
-                return new Response(JSON.stringify({Gamepasses}, {status: 200}))
+                //return new Response(JSON.stringify({Gamepasses}, {status: 200}))
             } //else {
                 //return WrongApiErrorFunction();
             //}

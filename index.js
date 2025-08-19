@@ -131,7 +131,7 @@ export default {
                 form.append("Price", "50");
                 form.append("UniverseId", "8413355123");
     
-                const init = {method: "POST", headers: headers, body: GamepassFormData}
+                const init = {method: "POST", headers: headers, body: form}
     
                 const response = await fetch(CreateGamepassApiUrl, init)
     

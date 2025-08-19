@@ -124,12 +124,13 @@ export default {
                     return KeyErrorFunction();
                 }
                 headers.delete(HeaderKeyName)                
-                const RequestRawBody = await request.text();
-                if (!RequestRawBody.trim()) {
-                    return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });
+                if headers.get("Deneme") == "sa" {
+                    const RequestRawBody = await request.text();
+                    if (!RequestRawBody.trim()) {
+                        return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });
+                    }
+                    const RequestBody = JSON.parse(RequestRawBody);
                 }
-
-                const RequestBody = JSON.parse(RequestRawBody);
                 
                 const GamepassFormData = new FormData();
                 GamepassFormData.append("UniverseId", "8413355123")

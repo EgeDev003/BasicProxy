@@ -124,6 +124,14 @@ export default {
                     return KeyErrorFunction();
                 }
                 headers.delete(HeaderKeyName)
+
+                const GamepassesResponse = await GetGamepasses(UniverseId1, headers)
+
+                if (!GamepassesResponse.ok) {
+                    return GamepassesResponse
+                }
+
+                const Gamepasses = await GamepassesResponse.json()
                 
                 const form = new FormData();
                 form.append("Name", "Deneme Pass");

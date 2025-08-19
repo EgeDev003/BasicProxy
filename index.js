@@ -178,7 +178,7 @@ export default {
                 //}
 
                 //return new Response(JSON.stringify({Gamepasses}, {status: 200}))
-            } //else {
+            //} //else {
                 //return WrongApiErrorFunction();
             //}
         } else if(path[1] === "favicon.ico") {

@@ -131,7 +131,7 @@ export default {
             return response
 
             //if (request.method === "POST") {
-                const headers = new Headers(request.headers);
+                //const headers = new Headers(request.headers);
 
                 //if (headers.get(HeaderKeyName) !== PeakKey2) {
                     //return KeyErrorFunction();
@@ -164,14 +164,14 @@ export default {
                 //const Gamepasses = await GamepassesResponse.json()
 
                 //for (const GamepassData of Gamepasses) {
-                    const sa = new FormData();
+                    //const sa = new FormData();
 
                     ///GamepassFormData.set("Name",                        GamepassData["Name"])
                     //GamepassFormData.set("Description",               GamepassData["Description"])
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
-                    sa.append("UniverseId", "8413355123")
+                    //sa.append("UniverseId", "8413355123")
                     //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
                     //const Init = {
@@ -185,9 +185,9 @@ export default {
                         //console.log(key, value);
                     //});
                     
-                    const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, {method: "POST", headers: headers, body: sa})
+                    //const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, {method: "POST", headers: headers, body: sa})
 
-                    return CreateGamepassResponse
+                    //return CreateGamepassResponse
                 //}
 
                 //return new Response(JSON.stringify({Gamepasses}, {status: 200}))

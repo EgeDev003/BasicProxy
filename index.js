@@ -158,7 +158,7 @@ export default {
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
-                    //GamepassFormData.append("UniverseId",               parseInt(UniverseId2, 10))
+                    GamepassFormData.append("UniverseId",               parseInt(UniverseId2, 10))
                     //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
                     const Init = {

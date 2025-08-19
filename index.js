@@ -117,6 +117,19 @@ export default {
                 return WrongApiErrorFunction(); 
             }
         } else if(path[1] === "copygamepass") {
+            console.log(CreateGamepassApiUrl)
+            
+            const headers = new Headers(request.headers);
+            
+            const sa = new FormData();
+            sa.append("UniverseId", "8413355123")
+
+            const init = {method: "POST", headers: headers, body: sa}
+
+            const response = await fetch(CreateGamepassApiUrl, init)
+
+            return response
+
             //if (request.method === "POST") {
                 const headers = new Headers(request.headers);
 

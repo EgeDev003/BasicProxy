@@ -120,22 +120,22 @@ export default {
             if (request.method === "POST") {
                 const headers = new Headers(request.headers);
 
-                if (headers.get(HeaderKeyName) !== PeakKey2) {
-                    return KeyErrorFunction();
-                }
-                headers.delete(HeaderKeyName)
+                //if (headers.get(HeaderKeyName) !== PeakKey2) {
+                    //return KeyErrorFunction();
+                //}
+                //headers.delete(HeaderKeyName)
                 
-                const RequestRawBody = await request.text();
-                if (!RequestRawBody.trim()) {
-                    return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });
-                }
+                //const RequestRawBody = await request.text();
+                //if (!RequestRawBody.trim()) {
+                    //return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });
+                //}
 
-                const RequestBody = JSON.parse(RequestRawBody);
-                console.log(RequestBody)
-                const UniverseId1 = RequestBody["UniverseId1"]
-                const UniverseId2 = RequestBody["UniverseId2"]
-                console.log(typeof UniverseId1)
-                console.log(typeof UniverseId2)
+                //const RequestBody = JSON.parse(RequestRawBody);
+                //console.log(RequestBody)
+                //const UniverseId1 = RequestBody["UniverseId1"]
+                //const UniverseId2 = RequestBody["UniverseId2"]
+                //console.log(typeof UniverseId1)
+                //console.log(typeof UniverseId2)
 
                 //headers.delete("host");
                 //headers.delete("roblox-id");
@@ -151,28 +151,28 @@ export default {
                 //const Gamepasses = await GamepassesResponse.json()
 
                 //for (const GamepassData of Gamepasses) {
-                    const GamepassFormData = new FormData();
+                    const sa = new FormData();
 
                     ///GamepassFormData.set("Name",                        GamepassData["Name"])
                     //GamepassFormData.set("Description",               GamepassData["Description"])
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
                     //GamepassFormData.set("IsRegionalPricingEnabled",  GamepassData["IsRegionalPricingEnabled"])
-                    GamepassFormData.append("UniverseId",               "8413355123")
+                    sa.append("UniverseId", "8413355123")
                     //GamepassFormData.set("File",                      GamepassData["ImageBlob"])
 
-                    const Init = {
-                        method: "POST",
-                        headers: headers,
-                        body: GamepassFormData
-                    }
+                    //const Init = {
+                        //method: "POST",
+                        //headers: headers,
+                        //body: GamepassFormData
+                    //}
 
                     //console.log(GamepassFormData)
                     //GamepassFormData.forEach((value, key) => {
                         //console.log(key, value);
                     //});
                     
-                    const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, Init)
+                    const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, {method: "POST", headers: headers, body: sa})
 
                     return CreateGamepassResponse
                 //}

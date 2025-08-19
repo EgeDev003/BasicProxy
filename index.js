@@ -124,7 +124,7 @@ export default {
                     return KeyErrorFunction();
                 }
                 headers.delete(HeaderKeyName)                
-                if headers.get("Deneme") == "sa" {
+                if (headers.get("Deneme") == "sa") {
                     const RequestRawBody = await request.text();
                     if (!RequestRawBody.trim()) {
                         return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });

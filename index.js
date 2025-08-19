@@ -118,8 +118,6 @@ export default {
             }
         } else if(path[1] === "copygamepass") {
             if (request.method === "POST") {
-                console.log(CreateGamepassApiUrl)
-                
                 const headers = new Headers(request.headers);
                 
                 const GamepassFormData = new FormData();

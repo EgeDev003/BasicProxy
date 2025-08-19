@@ -125,8 +125,11 @@ export default {
                 }
                 headers.delete(HeaderKeyName)
                 
-                const GamepassFormData = new FormData();
-                GamepassFormData.append("UniverseId", "8413355123")
+                const form = new FormData();
+                form.append("Name", "Deneme Pass");
+                form.append("Description", "Bu bir test gamepassidir.");
+                form.append("Price", "50");
+                form.append("UniverseId", "8413355123");
     
                 const init = {method: "POST", headers: headers, body: GamepassFormData}
     

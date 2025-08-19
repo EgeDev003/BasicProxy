@@ -122,10 +122,10 @@ export default {
                 
                 const headers = new Headers(request.headers);
                 
-                const sa = new FormData();
-                sa.append("UniverseId", "8413355123")
+                const GamepassFormData = new FormData();
+                GamepassFormData.append("UniverseId", "8413355123")
     
-                const init = {method: "POST", headers: headers, body: sa}
+                const init = {method: "POST", headers: headers, body: GamepassFormData}
     
                 const response = await fetch(CreateGamepassApiUrl, init)
     

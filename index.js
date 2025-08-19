@@ -175,7 +175,7 @@ export default {
                     const CreateGamepassResponse = await fetch(CreateGamepassApiUrl, Init)
 
                     return CreateGamepassResponse
-                }
+                //}
 
                 return new Response(JSON.stringify({Gamepasses}, {status: 200}))
             } else {

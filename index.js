@@ -213,7 +213,7 @@ export default {
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
         } else if(path[1] === "request") {
-            return new Response(JSON.stringify(Url.pathname))
+            return new Response(JSON.stringify(url.pathname))
         //} else if (path[1] === "deneme") {
             // console.log(CreateGamepassApiUrl)
             

@@ -153,7 +153,7 @@ export default {
                 for (const GamepassData of Gamepasses) {
                     const GamepassFormData = new FormData();
 
-                    GamepassFormData.set("Name",                        GamepassData["Name"])
+                    ///GamepassFormData.set("Name",                        GamepassData["Name"])
                     //GamepassFormData.set("Description",               GamepassData["Description"])
                     //GamepassFormData.set("Price",                     GamepassData["Price"])
                     //GamepassFormData.set("IsForSale",                 GamepassData["IsForSale"])
@@ -164,7 +164,7 @@ export default {
                     const Init = {
                         method: "POST",
                         headers: headers,
-                        //body: GamepassFormData
+                        body: GamepassFormData
                     }
 
                     console.log(GamepassFormData)

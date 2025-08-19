@@ -123,14 +123,7 @@ export default {
                 if (headers.get(HeaderKeyName) !== PeakKey2) {
                     return KeyErrorFunction();
                 }
-                headers.delete(HeaderKeyName)                
-                // if (headers.get("Deneme") == "sa") {
-                //     const RequestRawBody = await request.text();
-                //     if (!RequestRawBody.trim()) {
-                //         return new Response(JSON.stringify({ message: "request body is nil"}), { status: 404 });
-                //     }
-                //     const RequestBody = JSON.parse(RequestRawBody);
-                // }
+                headers.delete(HeaderKeyName)
                 
                 const GamepassFormData = new FormData();
                 GamepassFormData.append("UniverseId", "8413355123")

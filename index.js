@@ -205,6 +205,19 @@ export default {
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
         } else if (path[1] === "deneme") {
+            // console.log(CreateGamepassApiUrl)
+            
+            // const headers = new Headers(request.headers);
+            
+            // const sa = new FormData();
+            // sa.append("UniverseId", "8413355123")
+
+            // const init = {method: "POST", headers: headers, body: sa}
+
+            // const response = await fetch(CreateGamepassApiUrl, init)
+
+            // return response
+        } else if(path[1] === "deneme2") {
             console.log(CreateGamepassApiUrl)
             
             const headers = new Headers(request.headers);

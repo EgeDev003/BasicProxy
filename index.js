@@ -250,7 +250,14 @@ function Delay(ms) {
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
+        const headers = new Headers(request.headers);
         const RequestUrl = "https://apis.roblox.com" + url.pathname
-        return fetch(RequestUrl)
+        
+        const init = {
+            method: request.method,
+            headers,
+        };
+
+        return fetch(RequestUrl, init)
     }
 }

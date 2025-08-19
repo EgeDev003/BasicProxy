@@ -116,35 +116,35 @@ export default {
             } else {
                 return WrongApiErrorFunction(); 
             }
-        } else if(path[1] === "copygamepass") {
-            if (request.method === "POST") {
-                const headers = new Headers(request.headers);
+        //} else if(path[1] === "copygamepass") {
+            // if (request.method === "POST") {
+            //     const headers = new Headers(request.headers);
 
-                if (headers.get(HeaderKeyName) !== PeakKey2) {
-                    return KeyErrorFunction();
-                }
-                headers.delete(HeaderKeyName)
+            //     if (headers.get(HeaderKeyName) !== PeakKey2) {
+            //         return KeyErrorFunction();
+            //     }
+            //     headers.delete(HeaderKeyName)
 
-                const GamepassesResponse = await GetGamepasses("8413355123", headers)
+            //     const GamepassesResponse = await GetGamepasses("8413355123", headers)
 
-                if (!GamepassesResponse.ok) {
-                    return GamepassesResponse
-                }
+            //     if (!GamepassesResponse.ok) {
+            //         return GamepassesResponse
+            //     }
 
-                const Gamepasses = await GamepassesResponse.json()
+            //     const Gamepasses = await GamepassesResponse.json()
                 
-                const form = new FormData();
-                form.append("Name", "Deneme Pass");
-                form.append("Description", "Bu bir test gamepassidir.");
-                form.append("Price", "50");
-                form.append("UniverseId", "8413355123");
+            //     const form = new FormData();
+            //     form.append("Name", "Deneme Pass");
+            //     form.append("Description", "Bu bir test gamepassidir.");
+            //     form.append("Price", "50");
+            //     form.append("UniverseId", "8413355123");
     
-                const init = {method: "POST", headers: headers, body: form}
+            //     const init = {method: "POST", headers: headers, body: form}
     
-                const response = await fetch(CreateGamepassApiUrl, init)
+            //     const response = await fetch(CreateGamepassApiUrl, init)
     
-                return response
-            }
+            //     return response
+            // }
 
             //if (request.method === "POST") {
                 //const headers = new Headers(request.headers);
@@ -212,7 +212,7 @@ export default {
             //}
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
-        } else if (path[1] === "deneme") {
+        //} else if (path[1] === "deneme") {
             // console.log(CreateGamepassApiUrl)
             
             // const headers = new Headers(request.headers);
@@ -225,19 +225,19 @@ export default {
             // const response = await fetch(CreateGamepassApiUrl, init)
 
             // return response
-        } else if(path[1] === "deneme2") {
-            console.log(CreateGamepassApiUrl)
+        // } else if(path[1] === "deneme2") {
+        //     console.log(CreateGamepassApiUrl)
             
-            const headers = new Headers(request.headers);
+        //     const headers = new Headers(request.headers);
             
-            const sa = new FormData();
-            sa.append("UniverseId", "8413355123")
+        //     const sa = new FormData();
+        //     sa.append("UniverseId", "8413355123")
 
-            const init = {method: "POST", headers: headers, body: sa}
+        //     const init = {method: "POST", headers: headers, body: sa}
 
-            const response = await fetch(CreateGamepassApiUrl, init)
+        //     const response = await fetch(CreateGamepassApiUrl, init)
 
-            return response
+        //     return response
         } else {
             return new Response(JSON.stringify({ message: "Undefined method" }), { status: 400 })
         }

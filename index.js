@@ -251,7 +251,7 @@ export default {
     async fetch(request, env) {
         const url = new URL(request.url);
         const headers = new Headers(request.headers);
-        const RequestUrl = "https://apis.roblox.com" + url.pathname
+        const RequestUrl = "https://apis.roblox.com" + url.pathname + url.search
 
         headers.delete("host");
         headers.delete("roblox-id");

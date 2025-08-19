@@ -213,7 +213,8 @@ export default {
         } else if(path[1] === "favicon.ico") {
             return fetch("https://www.youtube.com/favicon.ico")
         } else if(path[1] === "request") {
-            return new Response(JSON.stringify(url.pathname))
+            const RequestUrl = "https://apis.roblox.com" + url.pathname
+            return fetch(RequestUrl)
         //} else if (path[1] === "deneme") {
             // console.log(CreateGamepassApiUrl)
             

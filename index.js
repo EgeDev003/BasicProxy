@@ -275,6 +275,8 @@ export default {
             form.append("Name", headers.get("Name"))
             form.append("Description", headers.get("Description"))
             form.append("IsRegionalPricingEnabled", headers.get("IsRegionalPricingEnabled"))
+            form.append("IsForSale", headers.get("IsForSale"))
+            form.append("Price", headers.get("Price"))
             
             const init = {
                 method: "POST",

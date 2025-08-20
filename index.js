@@ -271,7 +271,8 @@ export default {
             const form = new FormData();
 
             form.append("UniverseId", headers.get("UniverseId"))
-
+            form.append("Name", headers.get("Name"))
+            
             const init = {
                 method: "POST",
                 headers: headers,

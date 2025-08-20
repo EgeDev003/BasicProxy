@@ -256,7 +256,7 @@ export default {
             const form = new FormData();
 
             return form
-        } else
+        } else {
             const headers = new Headers(request.headers);
             const RequestUrl = `https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`
     

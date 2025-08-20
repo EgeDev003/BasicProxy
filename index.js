@@ -252,22 +252,32 @@ export default {
         const url = new URL(request.url);
         const path = url.pathname.split(/\//);
 
+        const headers = new Headers(request.headers);
+
+        headers.delete("host");
+        headers.delete("roblox-id");
+        headers.delete("user-agent");
+        headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+
         if (path[1] === "deneme") {
             const form = new FormData();
 
-            return new Response(form, {status: 200})
+            form.append("UniverseId", "8413355123")
+
+            const init = {
+                method: "POST",
+                headers: headers,
+                body: form
+            }
+
+            return fetch(CreateGamepassApiUrl, init)
         } else {
-            const headers = new Headers(request.headers);
+            
             const RequestUrl = `https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`
-    
-            headers.delete("host");
-            headers.delete("roblox-id");
-            headers.delete("user-agent");
-            headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
     
             const init = {
                 method: request.method,
-                headers,
+                headers: headers,
             };
             
             if (request.method !== "GET" && request.method !== "HEAD") {

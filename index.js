@@ -262,7 +262,7 @@ export default {
         if (path[1] === "deneme") {
             const form = new FormData();
 
-            form.append("UniverseId", "8413355123")
+            form.append("UniverseId", headers.get("UniverseId"))
 
             const init = {
                 method: "POST",

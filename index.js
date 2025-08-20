@@ -276,6 +276,7 @@ export default {
             form.append("Description", headers.get("Description"))
             form.append("IsRegionalPricingEnabled", headers.get("IsRegionalPricingEnabled"))
             form.append("IsForSale", headers.get("IsForSale"))
+            form.append("File", headers.get("ImageData"))
 
             if (headers.get("Price")) {
                 form.append("Price", headers.get("Price"))   

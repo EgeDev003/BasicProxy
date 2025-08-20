@@ -59,7 +59,20 @@ export default {
         };
 
         if (request.method !== "GET" && request.method !== "HEAD") {
-            init.body = await request.text();
+            if (headers.get("IsFormData") == "true") {
+                const body = await init.json();
+
+                const form = new FormData();
+
+                for (const key in body) {
+                    const data = body[key]
+                    form.append(key, data)
+                }
+
+                init.body = form
+            } else {
+                init.body = await request.text();
+            }
         }
 
         return fetch(`https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`, init);

@@ -274,7 +274,7 @@ export default {
             form.append("UniverseId", headers.get("UniverseId"))
             form.append("Name", headers.get("Name"))
             form.append("Description", headers.get("Description"))
-            form.append("IsRegionalPricingEnabled", headers.get("IsRegionalPricingEnabled") == "true" and true or false)
+            form.append("IsRegionalPricingEnabled", headers.get("IsRegionalPricingEnabled"))
             
             const init = {
                 method: "POST",

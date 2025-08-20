@@ -255,7 +255,7 @@ export default {
         if (path[1] === "deneme") {
             const form = new FormData();
 
-            return form
+            return new Response(form, {status: 200})
         } else {
             const headers = new Headers(request.headers);
             const RequestUrl = `https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`

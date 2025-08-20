@@ -252,7 +252,7 @@ export default {
         const url = new URL(request.url);
         const path = url.pathname.split(/\//);
 
-        if (path[1] === deneme) {
+        if (path[1] === "deneme") {
             const form = new FormData();
 
             return form

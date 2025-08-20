@@ -250,23 +250,31 @@ function Delay(ms) {
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
-        const headers = new Headers(request.headers);
-        const RequestUrl = "https://apis.roblox.com" + url.pathname + url.search
+        const path = url.pathname.split(/\//);
 
-        headers.delete("host");
-        headers.delete("roblox-id");
-        headers.delete("user-agent");
-        headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+        if (path[1] === deneme) {
+            const form = new FormData();
 
-        const init = {
-            method: request.method,
-            headers,
-        };
-        
-        if (request.method !== "GET" && request.method !== "HEAD") {
-            init.body = await request.text();
+            return form
+        } else
+            const headers = new Headers(request.headers);
+            const RequestUrl = `https://${path[1]}.roblox.com/${path.slice(2).join("/")}${url.search}`
+    
+            headers.delete("host");
+            headers.delete("roblox-id");
+            headers.delete("user-agent");
+            headers["user-agent"] = "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36";
+    
+            const init = {
+                method: request.method,
+                headers,
+            };
+            
+            if (request.method !== "GET" && request.method !== "HEAD") {
+                init.body = await request.text();
+            }
+    
+            return fetch(RequestUrl, init)
         }
-
-        return fetch(RequestUrl, init)
     }
 }

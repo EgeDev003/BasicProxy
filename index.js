@@ -273,6 +273,7 @@ export default {
 
             form.append("UniverseId", headers.get("UniverseId"))
             form.append("Name", headers.get("Name"))
+            form.append("Description", headers.get("Description"))
             
             const init = {
                 method: "POST",

@@ -12,6 +12,8 @@ export default {
 
         if (path[1] === "deneme") {
             const form = new FormData();
+            
+            
 
             form.append("UniverseId", headers.get("UniverseId"))
             form.append("Name", headers.get("Name"))

@@ -1,4 +1,4 @@
-const CreateGamepassApiUrl = "https://apis.roblox.com" 
+const CreateGamepassApiUrl = "https://apis.roblox.com/game-passes/v1/game-passes"
 
 export default {
     async fetch(request, env) {

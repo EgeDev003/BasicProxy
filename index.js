@@ -13,7 +13,7 @@ export default {
         if (path[1] === "deneme") {
             const form = new FormData();
             
-            
+            console.log(headers.get("content-type"))
 
             form.append("UniverseId", headers.get("UniverseId"))
             form.append("Name", headers.get("Name"))

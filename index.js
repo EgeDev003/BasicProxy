@@ -1,3 +1,5 @@
+const CreateGamepassApiUrl = "https://apis.roblox.com" 
+
 export default {
     async fetch(request, env) {
         const url = new URL(request.url);
